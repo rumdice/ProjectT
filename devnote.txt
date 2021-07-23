@@ -19,16 +19,33 @@ AWS 에서 도메인 하나 구입
 셋팅 문서 참조
 
 
-5. TS코드 완전 처음부터 작성하기
+5. TS코드 완전 처음부터 작성하기 (vscode)
 작업 폴더 vscode 열고 터미널에 
-npm init
-npm install -t typescript
+> npm init
+> npm install -t typescript
+package.json 파일 생성 됨
 
-package.json 셋팅됨
-
-tsc --init 
+> tsc --init 
 tsc.ps1 파일을 로드 할 수 없다 어쩌구 하면서 안되면
 
 관리자 권한으로 파워쉘 키기
-Set=ExecutionPolicy RemoteSigned
+> Set=ExecutionPolicy RemoteSigned
 
+다시 vscode 터미널에서 
+> tsc --init (잘 됨)
+tsconfig.json 파일 생성 됨
+
+
+6. vscode 에서의 추가 설정
+터미널 - 작업구성 메뉴 선택
+tsc: 빌드 - tsconfig.json 선택
+task.json 파일 생성 됨
+
+F5 (단축키 셋팅이 visual studio로 되어있음)
+
+vscode 옆에 텝에 벌레모양 (디버깅 메뉴 선택)
+launch.json 파일 만들기
+환경 선택에서 node.js 선택
+
+launch.json 파일이 생성 됨
+이후 F5나 ctrl-F5 할 경우 일일히 환경 선택 하지 않아도 바로 디버깅/실행 가능
