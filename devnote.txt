@@ -1,4 +1,4 @@
-Date : 20210723
+Date : 2021.07.23
 
 1. AWS rds 생성
 root 계정 정보 설정
@@ -48,4 +48,11 @@ launch.json 파일 만들기
 환경 선택에서 node.js 선택
 
 launch.json 파일이 생성 됨
-이후 F5나 ctrl-F5 할 경우 일일히 환경 선택 하지 않아도 바로 디버깅/실행 가능
+이후 vscode 에서 F5나 ctrl-F5 할 경우 일일히 환경 선택 하지 않아도 바로 디버깅/실행 가능
+
+
+
+Date : 2021.07.26
+
+1. express 사용 준비
+> npm install @types/express
