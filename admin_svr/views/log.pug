@@ -1,0 +1,36 @@
+extends layout.pug
+
+
+block content
+  
+  - var logNamelist = logNameList;
+  - var logDataList = logDataList;
+  - var idx = idx;
+
+  title= title
+  h1 Log Page
+
+  form(class="form-signin" method="POST" action="/logs/detail")
+    table#pickle.table.table-hover.table-striped.table-bordered
+      thead
+        tr
+          th #
+          th LogFile Name
+          th CreateDate
+          th ViewDetail
+    
+      tbody
+        each row,i in logNamelist
+          tr
+            td #{i}
+            td #{row}.log
+            td #{row}
+            td
+              input(type="hidden" name="idx" id="idx" class="form-control", value="#{i}")
+              button.btn.btn-primary(type="submit" name="bidx" id="bidx" data-toggle="modal",data-target="#myModal", value=i) Detail
+
+
+
+  // 일단 별로 페이지 (logRes)에 표현
+  //- +modal("Modal title", "myModal")
+  //-   p #{logDataList[idx]}

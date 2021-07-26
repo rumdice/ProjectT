@@ -56,3 +56,33 @@ Date : 2021.07.26
 
 1. express 사용 준비
 > npm install @types/express
+
+
+2. 필요 패키지 설치
+> npm install @types/typescript
+
+> npm install @types/mysql2 (없음)
+> npm install mysql2
+
+3. 현재 발견된 문제점
+빌드시 커맨드 창에 tsc --build tsconfig.json 입력해줘야 빌드가 됨
+F5 키로 빌드-> 디버깅을 한번에 하고 싶은데 어떻게 했더라?
+
+> tsc --build tsconfig.json 
+하면 ./out 경로에 js 코드가 생성됨
+
+서버 실행
+> node index.js
+
+해당 코드를 실행하면 import 한 패키지에 따라 패키지가 없다고 나옴
+ex) Cannot find moudle 'express'
+
+방금 위에서  npm install @types/express로 설치 했는데 왜 안나오나.
+js 로 생성된 코드(index.js)가 express를 불러오지 못 함.
+
+> npm install express 
+
+
+3.필요한 패키지 추가 설치 (페이지 랜더용)
+> npm install pug
+> npm install pug-bootstrap

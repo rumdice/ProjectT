@@ -1,0 +1,47 @@
+extends layout.pug
+
+
+block content
+  - var db_user_uuid = user_uuid;
+  - var db_user_id = user_id;
+  - var db_cheat_res = cheat_res;
+
+  
+  title= title
+  h1 Cheat Page
+  
+  form(class="form-signin" method="POST" action="/cheat/search")
+    h3 User Search
+
+    .col-xs-3
+      label(for='useruuid') UserUUID
+      .input-group
+        input(type="text" name="useruuid" id="useruuid" class="form-control" value=db_user_uuid)
+        span.input-group-btn
+          button.btn.btn-primary(type="submit") Search
+
+      p Target User UUID : #{db_user_uuid}
+      p Cheat Status : #{db_cheat_res}
+
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+    
+
+  form(class="form-signin" method="POST" action="/cheat/do")
+    .col-xs-6
+      h3 Cheat List
+      .input-group
+        input(type="hidden" name="cheat_user_id" id="cheat_user_id" class="form-control" value = db_user_id)
+        input(type="hidden" name="cheat_user_uuid" id="cheat_user_uuid" class="form-control" value = db_user_uuid)
+
+        button.btn.btn-primary(name="cheat_url" id="cheat_url" value="/editorAllUnitOpen" type="submit") All Unit Open (모든 유닛(빌런,로봇) 오픈)
+        p
+        button.btn.btn-primary(name="cheat_url" id="cheat_url" value="/editorAllSkinOpen" type="submit") All Skin Open (모든 스킨 오픈)
+        p
+        button.btn.btn-primary(name="cheat_url" id="cheat_url" value="/editorAllUnitTrophy50" type="submit") UnitTrophy50 (트로피 50)

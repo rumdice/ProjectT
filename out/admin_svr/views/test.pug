@@ -1,0 +1,46 @@
+extends layout.pug
+
+
+block content
+  - var dbresult = dbRow.trophy_reward_step;
+  
+  title= title
+  h1 User Page
+
+  //- .container
+  //-   .row
+  //-     .col-sm-6
+  //-       .input-group
+  //-         input.form-control(type='text')
+  //-         span.input-group-btn
+  //-           button.btn.btn-default(type='button') Go!
+  
+  //- request body empty form : 왜지?
+  //- form(action="/test/search" method="POST" enctype='application/json')
+  //-   div.input
+  //-     label UserId
+  //-     +input(type="text" name="userid" value="1" id="userid")
+    
+  //-   div.input
+  //-     label UserTag
+  //-     +textarea(name="UserTag" cols="40" rows="5")
+    
+  //-   div.actions
+  //-     +submit("search")
+ 
+
+  //- 동작 하는 폼
+  //- 원인1) input에 bootstrap 포맷을 사용하려고 +를 붙이니 동작을 안함
+  form(class="form-signin" method="POST" action="/test/search")
+    //input(type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus)
+    
+    p UserID :
+    //label(for="userid" class="sr-only") User ID : 
+    input(type="text" name="userid" id="userid" class="form-control")
+
+    //var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+    button(type="submit") Search
+
+
+  br
+  p User Data (Trophy Step) :: #{dbresult}

@@ -1,7 +1,3 @@
-import express from "express";
-
-const app = express();
-
 let aalist = [];
 aalist.push(1);
 aalist.push(2);
