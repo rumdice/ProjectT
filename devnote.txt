@@ -86,3 +86,12 @@ js 로 생성된 코드(index.js)가 express를 불러오지 못 함.
 3.필요한 패키지 추가 설치 (페이지 랜더용)
 > npm install pug
 > npm install pug-bootstrap
+
+
+4. AWS 인증서 발급 (ACM)
+AWS에서 도메인을 발급 받았으면 인증서를 발급받자
+ACM 메뉴에서 진행 가능
+(CNAME)
+ 
+하위 도메인에 대한 접근 경로 수정
+AWS 로드 벨런스 설정 
