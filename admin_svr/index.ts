@@ -13,6 +13,7 @@ import cheat from './routes/cheat';
 import test from './routes/test';
 //import { LoggerAdmin } from "../common/logger";
 
+console.log("aabbcc");
 const app = express();
 
 (async () => {
