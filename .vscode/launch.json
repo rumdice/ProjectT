@@ -11,7 +11,11 @@
             "program": "${file}",
             "skipFiles": [
                 "<node_internals>/**"
-            ]
+            ],
+            "env": {
+                "NODE_ENV": "local",    // local 환경 디버깅:local, 개발서버: dev, 라이브: live
+                // "PORT": "5005",
+            }
         },
     ]
 }

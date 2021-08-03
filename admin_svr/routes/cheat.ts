@@ -1,4 +1,5 @@
 import express from "express";
+import { doCheat } from "../controller/cheat";
 import { checkLogin } from "../controller/login";
 import { getUserId } from "../query/query";
 
@@ -32,7 +33,7 @@ router.post('/do', async (req, res) => {
     let user_uuid = req.body.cheat_user_uuid;
     let cheat_url = req.body.cheat_url;
 
-    //res_body.cheat_res = (doCheat(cheat_url, user_uuid)) ? `${cheat_url} Done!` : "Error!";
+    res_body.cheat_res = (doCheat(cheat_url, user_uuid)) ? `${cheat_url} Done!` : "Error!";
     res.render(res_view, res_body);
 });
 
