@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "rumdice-admin",
-            "script": "./out/admin_svr/index.js",
+            "script": "../out/admin_svr/index.js",
             "watch": "true",
             "wait_ready": true,
             "env_local": {
