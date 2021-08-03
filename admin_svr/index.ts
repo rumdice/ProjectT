@@ -1,6 +1,8 @@
 import express from "express";
 import path from 'path';
 
+import database from "../common/database";
+
 import routes from './routes/home';
 import login from './routes/login';
 import users from './routes/user';
@@ -13,7 +15,7 @@ const app = express();
 
 (async () => {
     // database Init
-    //await Promise.all([database.init()]);
+    await Promise.all([database.init()]);
 
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));

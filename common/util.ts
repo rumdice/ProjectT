@@ -10,11 +10,11 @@ export function loadLogFile(path: string) {
 }
 
 export function loadLogDir(path: string) {
-    return fs.readdirSync(path); // encoding default utf8
+    return fs.readdirSync(path);
 }
 
 export function getControllerList(path: string) {
-    let conList = fs.readdirSync(path); // encoding default utf8
+    let conList = fs.readdirSync(path);
     let conNames: string[] = [];
 
     conList.forEach(e => {
@@ -46,7 +46,7 @@ export function dbError(sqlMsg: string) {
     error.name = "DBError";
     error.result = "DBError";
     error.message = sqlMsg;
-    
+
     return error;
 }
 

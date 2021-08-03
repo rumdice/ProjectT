@@ -1,6 +1,6 @@
 import mysql, { FieldPacket, OkPacket, PoolConnection, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import { loadConfig } from "./util";
-import { CONFIG_PATH_DB_DEV, CONFIG_PATH_DB_REAL, CONFIG_PATH_DB_QA } from "./define";
+import { CONFIG_PATH_DB_DEV, CONFIG_PATH_DB_LIVE, CONFIG_PATH_DB_LOCAL} from "./define";
 
 export declare const db: mysql.Pool;
 
@@ -37,14 +37,14 @@ export default {
     async init() {
         // pm2 env 
         let path = "";
-        if (process.env.NODE_ENV === "production") {
-            path = CONFIG_PATH_DB_REAL;
+        if (process.env.NODE_ENV === "dev") {
+            path = CONFIG_PATH_DB_DEV;
         }
-        else if (process.env.NODE_ENV === "qa") {
-            path = CONFIG_PATH_DB_QA;
+        else if (process.env.NODE_ENV === "live") {
+            path = CONFIG_PATH_DB_LIVE;
         }
         else {
-            path = CONFIG_PATH_DB_DEV; // "development (default)"
+            path = CONFIG_PATH_DB_LOCAL;
         }
 
         const connectionPool = mysql.createPool(loadConfig(path));

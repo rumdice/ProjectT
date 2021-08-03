@@ -1,0 +1,8 @@
+{
+    "host": "",
+    "user": "",
+    "password": "",
+    "database": "",
+    "connectionLimit": 100,
+    "timezone": "+00:00"
+}
