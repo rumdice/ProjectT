@@ -1,8 +1,5 @@
-"use strict";
-
 import fs from "fs";
 //import { Result } from "../packet/jsonStructs";
-// import { SECRET_KEY } from "./define";
 
 export function loadConfig(path: string) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));

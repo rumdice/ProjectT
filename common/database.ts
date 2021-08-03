@@ -1,5 +1,3 @@
-"use strict";
-
 import mysql, { FieldPacket, OkPacket, PoolConnection, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import { loadConfig } from "./util";
 import { CONFIG_PATH_DB_DEV, CONFIG_PATH_DB_REAL, CONFIG_PATH_DB_QA } from "./define";

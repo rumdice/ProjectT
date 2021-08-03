@@ -1,26 +1,7 @@
-"use strict";
-
 import { request as httprequest } from 'http';
 import { request as httpsrequest} from 'https';
 import { response } from 'express';
 //import { loadConfig } from "../common/util";
-
-export let isLogin = false;
-export const ADMIN_ID = "admin"; 
-export const ADMIN_PWD = "pass"; 
-
-export function setLogin() {
-    isLogin = true;
-}
-
-export function checkLogin() {
-    return isLogin;
-}
-
-export function checkAdminInfo(id:string, pwd:string) {
-    return  (id === ADMIN_ID && pwd === ADMIN_PWD) ? true : false;
-}
-
 
 // export function doCheat(_url: string, _user_uuid: string) {
 //     let config = (process.env.NODE_ENV === "production") ? "live" : "dev"  // production or development(local)

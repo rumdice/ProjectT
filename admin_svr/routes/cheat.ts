@@ -1,5 +1,5 @@
 import express from "express";
-import { checkLogin, } from '../common';
+import { checkLogin } from "../controller/login";
 import { getUserId } from "../query/query";
 
 let res_view = 'cheat';

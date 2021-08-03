@@ -1,8 +1,5 @@
-"use strict";
-
 import express from "express";
 import path from 'path';
-import database from '../common/database';
 
 import routes from './routes/home';
 import login from './routes/login';

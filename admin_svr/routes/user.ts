@@ -1,6 +1,5 @@
 import express = require('express');
-import { db, DBRow, DBStatus } from '../../common/database';
-import { checkLogin } from '../common';
+import { checkLogin } from '../controller/login';
 import { addUserGoods, getUserGames, getUserGoods, getUserId } from '../query/query';
 import { errorPage } from './error';
 

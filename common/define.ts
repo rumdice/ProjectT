@@ -1,5 +1,3 @@
-"use strict";
-
 export const CLUSTER_MAX_COUNT = 2;     // 보통은 그냥 CPU CORE 수 만큼 하지만 일단 2개만 띄움
 export const PORT_SVR_API = 10010;      // 게임 서버 포트
 export const PORT_SVR_ADMIN = 5000;     // 운영 서버 포트

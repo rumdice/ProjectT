@@ -1,5 +1,5 @@
 import express = require('express');
-import { checkAdminInfo, setLogin } from '../common';
+import { checkAdminInfo, setLogin } from '../controller/login';
 
 let res_view = 'login';
 let res_body = {
