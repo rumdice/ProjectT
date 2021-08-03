@@ -8,8 +8,9 @@ import login from './routes/login';
 import users from './routes/user';
 import cheat from './routes/cheat';
 import test from './routes/test';
-// import logs from './routes/log';
-// import { LoggerAdmin } from "../common/logger";
+import logs from './routes/log';
+import { PORT_SVR_ADMIN } from "../common/define";
+import { LoggerAdmin } from "../common/logger";
 
 const app = express();
 
@@ -31,16 +32,15 @@ const app = express();
     app.use('/home', routes);   // 홈 (대시보드 같은 거)
     app.use('/user', users);    // 유저
     app.use('/cheat', cheat);   // 치트
-    //app.use('/logs', logs);     // 로그
+    app.use('/logs', logs);     // 로그
     app.use('/test', test);     // 테스트    
     
     // set port
-    let port = process.env.PORT || 5000; // 디버깅 환경 고려
+    let port = process.env.PORT || PORT_SVR_ADMIN; // 디버깅 환경 고려
     app.set('port', port);
 
     // start admin server
     app.listen(app.get('port'), () => {
-        console.log("admin server start on");
         //LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
     });
 })();
