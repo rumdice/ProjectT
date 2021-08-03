@@ -6,9 +6,9 @@ export const PORT_SVR_API = 10010;      // 게임 서버 포트
 export const PORT_SVR_ADMIN = 5000;     // 운영 서버 포트
 export const PORT_SVR_CHAT = 8080;      // 채팅 서버 포트
 
-export const CONFIG_PATH_DB_LOCAL = "./config/dbconfig_local.json";
-export const CONFIG_PATH_DB_DEV = "./config/dbconfig_dev.json";
-export const CONFIG_PATH_DB_LIVE = "./config/dbconfig_real.json";
+export const CONFIG_PATH_DB_LOCAL = "../config/dbconfig_local.json";
+export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json";
+export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json";
 
 export enum platform {
     android = "android",
