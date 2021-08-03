@@ -1,5 +1,5 @@
 import express = require('express');
-import { readApiErrorDir, readApiErrorLog } from '../../common/logger';
+import { readGameErrorDir, readGameErrorLog } from '../../common/logger';
 
 let res_view = 'log';
 let res_body = {
@@ -13,7 +13,7 @@ let viewLogRes = 'logRes';
 
 const router = express.Router();
 router.get('/', (req, res) => {
-    let logDir = readApiErrorDir();
+    let logDir = readGameErrorDir();
     let logNames: string[] = [];
 
     logDir.forEach(e => {
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
 router.post('/detail', (req, res) => {
     
-    let logDir = readApiErrorDir();
+    let logDir = readGameErrorDir();
     let logNames: string[] = [];
     let logDatas: string[] = [];
     
@@ -41,7 +41,7 @@ router.post('/detail', (req, res) => {
     });
     
     logNames.forEach(e => {
-        let logData = readApiErrorLog(e).toString();
+        let logData = readGameErrorLog(e).toString();
         logData = logData.replace(/\r/g, "");
 
         logDatas.push(logData);

@@ -4,20 +4,10 @@ import { loadLogFile, loadLogDir } from "./util";
 
 const { combine, timestamp, printf } = format;
 
-const apiServerLogDir = '../logs/api';
+const gameServerLogDir = '../logs/game';
 const adminServerLogDir = '../logs/admin';
 const chatServerLogDir = '../logs/chat';
 const days = 5; // 30일치 로그 - 거지라서 aws 요금 관련. 로그 파일 갯수 줄이기
-
-
-
-const logFormat = printf(info => {
-    if (process.env.NODE_ENV === "local") {
-        console.log(`${info.timestamp} - ${info.level}: ${info.message}`);
-    }
-
-    return `${info.timestamp} - ${info.level}: ${info.message}`;
-});
 
 export enum logLevel {
     ERROR = 'error',
@@ -26,8 +16,17 @@ export enum logLevel {
     DEBUG = 'dedug'
 }
 
-// svr_api
-export const LoggerApi = createLogger({
+// TODO: 이런게 타입스트립트 답고, 함수형 프로그래밍 다운 것일까? logFormat이라는 함수를 값 처럼 취급
+const logFormat = printf(info => {
+    if (process.env.NODE_ENV === "local") {
+        console.log(`${info.timestamp} - ${info.level}: ${info.message}`);
+    }
+
+    return `${info.timestamp} - ${info.level}: ${info.message}`;
+});
+
+// 게임서버
+export const LoggerGame = createLogger({
     format: combine(
         timestamp({
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -41,7 +40,7 @@ export const LoggerApi = createLogger({
             handleExceptions: true,
             json: false,
             datePattern: 'YYYY-MM-DD',
-            dirname: apiServerLogDir + '/info',
+            dirname: gameServerLogDir + '/info',
             filename: `%DATE%.log`,
             maxFiles: days,
             zippedArchive: false,
@@ -51,7 +50,7 @@ export const LoggerApi = createLogger({
             level: logLevel.ERROR,
             json: false,
             datePattern: 'YYYY-MM-DD',
-            dirname: apiServerLogDir + '/error',
+            dirname: gameServerLogDir + '/error',
             filename: `%DATE%.log`,
             maxFiles: days,
             zippedArchive: false,
@@ -59,26 +58,22 @@ export const LoggerApi = createLogger({
     ],
 });
 
-export function readApiErrorLog(date: string) {
-    let path = apiServerLogDir + `/error/${date}.log`;
+export function readGameErrorLog(date: string) {
+    let path = gameServerLogDir + `/error/${date}.log`;
     return loadLogFile(path);
 }
 
-export function readApiInfoLog(date: string) {
-    let path = apiServerLogDir + `/info/${date}.log`;
+export function readGameInfoLog(date: string) {
+    let path = gameServerLogDir + `/info/${date}.log`;
     return loadLogFile(path);
 }
 
-export function readApiErrorDir() {
-    let path = apiServerLogDir + '/error';
+export function readGameErrorDir() {
+    let path = gameServerLogDir + '/error';
     return loadLogDir(path);
 }
 
-
-
-
-
-// svr_admin
+// 운영서버
 export const LoggerAdmin = createLogger({
     format: combine(
         timestamp({
@@ -126,10 +121,7 @@ export function readAdminErrorDir() {
     return loadLogDir(path);
 }
 
-
-
-
-// chat_svr - ws server
+// 채팅서버
 export const LoggerChat = createLogger({
     format: combine(
         timestamp({

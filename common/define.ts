@@ -2,7 +2,7 @@ export const CLUSTER_MAX_COUNT = 2;     // 보통은 그냥 CPU CORE 수 만큼 
 
 export const MAX_USER_NICK_NAME = 12;   // 유저 이름 최대 길이
 
-export const PORT_SVR_API = 10010;      // 게임 서버 포트 
+export const PORT_SVR_GAME = 10010;     // 게임 서버 포트 
 export const PORT_SVR_ADMIN = 5000;     // 운영 서버 포트
 export const PORT_SVR_CHAT = 8080;      // 채팅 서버 포트
 
@@ -31,7 +31,7 @@ export interface ServerInfo {
 
 export let local: ServerInfo = {
     address: "127.0.0.1",
-    port: PORT_SVR_API,
+    port: PORT_SVR_GAME,
 }
 
 export let dev: ServerInfo = {
