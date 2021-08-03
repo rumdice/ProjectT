@@ -50,6 +50,6 @@ export default {
         const connectionPool = mysql.createPool(loadConfig(path));
         Object.defineProperty(module.exports, 'db', { value: connectionPool });
 
-        console.log('database is initialized.');
+        console.log(`database is initialized. env:${process.env.NODE_ENV}`);
     }
 };
