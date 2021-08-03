@@ -1,12 +1,23 @@
 {
+  // 컴파일 옵션
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "out",
-    "strict": true,
-    "esModuleInterop": true,
+    "module": "commonjs", // 모듈을 위한 코드 생성 설정(기본값)
+    "target": "es5", // 컴파일에 사용할 ECMA 버전
+    "sourceMap": true, // .map 맵 파일 생성 여부 (빌드시 나오는 파일, ts 파일과 js 파일의 맵핑 정보로서 js 디버깅에 사용됨)
+    "outDir": "out", // 컴파일 결과 나오는 경로
+    "strict": true, // 엄격한 타입 검사 사용 여부
+    "alwaysStrict": true, // strict의 하위 옵션으로서 각 소스파일에 "use strict"를 추가할 지 여부 (엄격한 타입 검사)
+    "esModuleInterop": true, // 모든 imports 에 대한 namespace 생성 여부. true인 경우 es6 모듈 사양 준수. commonjs 모듈을 가져 올 수 있게 됨. import 구문을 써도 require~로 전환됨.
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  // 컴파일 포함 목록
+  //"include": [],
+  // 컴파일 제외 목록 
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "out",
+    "log"
+  ],
 }
