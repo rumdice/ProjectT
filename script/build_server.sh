@@ -10,7 +10,10 @@ git branch
 # Update
 git pull
 
-# Remove 'out' directory
+# 컴파일을 위해 상위 폴더로 이동
+cd ~/ProjectT/
+
+# 기존에 컴파일된 파일 삭제
 rm -rf ./out/
 
 # Compile
