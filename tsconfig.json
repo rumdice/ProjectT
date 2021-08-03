@@ -19,6 +19,7 @@
     "**/node_modules/*",
     "out",
     "log",
-    "script"
+    "script",
+    "config"
   ],
 }
