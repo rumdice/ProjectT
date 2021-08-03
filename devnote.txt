@@ -112,11 +112,26 @@ vscode 에서의 타입 스크립트 디버깅/실행 환경 설정
 > npm i ts-node
 (이제 디버깅은 됨)
 (이거 설치 안해도 ts파일 자체의 디버깅은 가능했음)
+(import 구문이 있는 파일은 에러가 발생함)
 
 
 Date : 2021.08.03
+빌드 관련 정리 
+- launch.json 파일 작성 완료
+
+빌드 (따로 진행)
+ctrl + shift + b (vs shotcut mapping 해서 단축키 똑같음)
+- cmd 에서 커맨드로 tsc 한 효과
+- 지정된 경로 ./out 폴더에 js파일과 디버깅에 필요한 .map파일이 생김
+
+F5 키로 디버그 또는 ctrl + F5로 디버깅 하지 않고 실행
+- import 구문에서 에러 발생하지 않음. 실행 및 디버그 확인
+
 로깅에 필요한 패키지 설치
 > npm i @types/winston
 > npm i @types/winston-daily-rotate-file (없음. 에러)
-
 > npm i winston-daily-rotate-file
+
+admin 서버에서 더 해볼만한것
+1. 프론트 부분은 반응형 페이지로 발전 시키기
+2. vue.js 사용 해보기
