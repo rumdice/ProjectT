@@ -112,3 +112,11 @@ vscode 에서의 타입 스크립트 디버깅/실행 환경 설정
 > npm i ts-node
 (이제 디버깅은 됨)
 (이거 설치 안해도 ts파일 자체의 디버깅은 가능했음)
+
+
+Date : 2021.08.03
+로깅에 필요한 패키지 설치
+> npm i @types/winston
+> npm i @types/winston-daily-rotate-file (없음. 에러)
+
+> npm i winston-daily-rotate-file

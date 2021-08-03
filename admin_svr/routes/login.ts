@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
     let pwd = req.body.admin_pwd;
     
     if (!checkAdminInfo(id, pwd)) {
-        res.render(res_view, res_body); //로그인 실패 다시 로그인 화면으로 보내기 (에러페이지 처리 x)
+        res.render(res_view, res_body); // 다시 로그인 화면으로 보내기 (에러 처리 x)
     }
     
     setLogin();
