@@ -1,0 +1,22 @@
+{
+    "apps": [
+        {
+            "name": "rumdice-admin",
+            "script": "./out/admin_svr/index.js",
+            "watch": "true",
+            "wait_ready": true,
+            "env_local": {
+                "NODE_ENV": "local",
+                "PORT": 5000
+            },
+            "env_dev": {
+                "NODE_ENV": "dev",
+                "PORT": 5000
+            },
+            "env_live": {
+                "NODE_ENV": "live",
+                "PORT": 5000
+            }
+        }
+    ]
+}
