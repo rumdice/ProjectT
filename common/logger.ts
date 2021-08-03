@@ -4,10 +4,10 @@ import { loadLogFile, loadLogDir } from "./util";
 
 const { combine, timestamp, printf } = format;
 
-const apiServerLogDir = './logs/api';
-const adminServerLogDir = './logs/admin';
-const chatServerLogDir = './logs/chat';
-const days = 30; // 30일치 로그
+const apiServerLogDir = '../logs/api';
+const adminServerLogDir = '../logs/admin';
+const chatServerLogDir = '../logs/chat';
+const days = 5; // 30일치 로그 - 거지라서 aws 요금 관련. 로그 파일 갯수 줄이기
 
 
 

@@ -14,7 +14,7 @@ git pull
 cd ~/ProjectT/
 
 # 기존에 컴파일된 파일 삭제
-rm -rf ./out/
+rm -rf ../out/
 
 # Compile
 tsc
