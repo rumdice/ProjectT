@@ -1,3 +1,6 @@
 .vscode/
 out/
 logs/
+/config/dbconfig_local.json
+/config/dbconfig_dev.json
+/config/dbconfig_live.json
