@@ -10,6 +10,9 @@ export const CONFIG_PATH_DB_LOCAL = "./config/dbconfig_local.json"; // local은 
 export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json";
 export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json";
 
+export const PING_TICK = 5000;
+
+
 export enum platform {
     android = "android",
     ios = "ios",

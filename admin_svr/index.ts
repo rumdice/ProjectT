@@ -36,7 +36,7 @@ const app = express();
     app.use('/test', test);     // 테스트    
     
     // set port
-    let port = process.env.PORT || PORT_SVR_ADMIN; // 디버깅 환경 고려
+    let port = process.env.PORT || PORT_SVR_ADMIN;
     app.set('port', port);
 
     // start admin server

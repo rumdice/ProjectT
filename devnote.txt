@@ -135,3 +135,8 @@ F5 키로 디버그 또는 ctrl + F5로 디버깅 하지 않고 실행
 admin 서버에서 더 해볼만한것
 1. 프론트 부분은 반응형 페이지로 발전 시키기
 2. vue.js 사용 해보기
+
+Date : 2021.08.04
+websocket 관련 패키지 설치
+> npm i @types/ws
+> npm i ws

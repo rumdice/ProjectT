@@ -1,5 +1,5 @@
 import fs from "fs";
-//import { Result } from "../packet/jsonStructs";
+import { ErrorCode } from "../packet/commonPacket";
 
 export function loadConfig(path: string) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));
@@ -27,11 +27,6 @@ export function getControllerList(path: string) {
     return conNames;
 }
 
-export function generateStringTag(length: number) {
-    const source = 'ABCDEFGHJKLMNOPQRSTUVWXYZ123456789';
-    return [...Array(length)].map(() => source[Math.floor(Math.random() * source.length)]).join('');
-}
-
 export function panic(result: string, message?: string, packet?: string, param?: any) {
     const error: any = new Error();
     error.name = "PanicError";
@@ -50,23 +45,10 @@ export function dbError(sqlMsg: string) {
     return error;
 }
 
-
-export function randomInt(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-export function randomFloat(min: number, max: number): number {
-    return Math.random() * (max - min) + min;
-}
-
-export function clamp(value: number, min: number, max: number): number {
-    return value < min ? min : value > max ? max : value;
-}
-
-export function getDateDiff(datetime1: Date, datetime2: Date): number {
-    const date1 = Date.UTC(datetime1.getUTCFullYear(), datetime1.getUTCMonth(), datetime1.getUTCDate());
-    const date2 = Date.UTC(datetime2.getUTCFullYear(), datetime2.getUTCMonth(), datetime2.getUTCDate());
-    return Math.floor((date1 - date2) / 86400000);
+export function successChat<T>(extra?: T): { error: ErrorCode } & T {
+    const result = {};
+    if (extra != null) {
+        Object.assign(result, extra);
+    }
+    return <{ error: ErrorCode } & T>result;
 }
