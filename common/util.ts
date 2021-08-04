@@ -27,10 +27,16 @@ export function getControllerList(path: string) {
     return conNames;
 }
 
-export function panic(result: string, message?: string, packet?: string, param?: any) {
+export function randomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+export function panic(errorCode: ErrorCode, message?: string, packet?: string, param?: any) {
     const error: any = new Error();
     error.name = "PanicError";
-    error.result = result;
+    error.result = errorCode;
     error.message = message;
 
     return error;
@@ -43,6 +49,14 @@ export function dbError(sqlMsg: string) {
     error.message = sqlMsg;
 
     return error;
+}
+
+export function successGame<T>(extra?: T): { error: ErrorCode } & T {
+    const result = { error: ErrorCode.Success };
+    if (extra != null) {
+        Object.assign(result, extra);
+    }
+    return <{ error: ErrorCode } & T>result;
 }
 
 export function successChat<T>(extra?: T): { error: ErrorCode } & T {

@@ -12,6 +12,11 @@ export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json";
 
 export const PING_TICK = 5000;
 
+export const SESSION_TTL = 2 * 3600; 
+export const USER_TTL = 4 * 3600;
+export const COOKIE_HEADER = 'x-rumdice';
+export const MAX_CNT_GENERATE_TOKEN = 32;
+
 
 export enum platform {
     android = "android",
