@@ -1,6 +1,6 @@
 import { Cookie, newSession } from "../../common/session";
 import { successGame } from "../../common/util";
-import * as gp from "../../packet/gamePacket";
+import * as gp from "../../packet/gamepacket";
 
 import * as queryUser from "../query/user";
 import * as queryUtil from "../query/util";

@@ -1,5 +1,5 @@
 import redis from "redis";
-import { ErrorCode } from "../packet/commonPacket";
+import { ErrorCode } from "../packet/commonpacket";
 import { MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define";
 import { panic, randomInt } from "./util";
 

@@ -1,5 +1,5 @@
 import * as userQuery from "../query/user";
-import * as cp from "../../packet/chatPacket";
+import * as cp from "../../packet/chatpacket";
 import { successChat } from "../../common/util";
 
 

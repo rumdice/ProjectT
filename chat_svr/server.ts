@@ -6,7 +6,7 @@ import database from '../common/database';
 import { getControllerList } from '../common/util';
 import { LoggerChat } from '../common/logger';
 import { PING_TICK, PORT_SVR_CHAT } from '../common/define';
-import { ErrorCode } from '../packet/commonPacket';
+import { ErrorCode } from '../packet/commonpacket';
 
 const app = express();
 const packetHandlerList = {} as any;

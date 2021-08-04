@@ -1,5 +1,5 @@
 import fs from "fs";
-import { ErrorCode } from "../packet/commonPacket";
+import { ErrorCode } from "../packet/commonpacket";
 
 export function loadConfig(path: string) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));

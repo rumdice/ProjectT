@@ -2,7 +2,7 @@ import express, { Router } from "express";
 import database from "../common/database";
 import { getControllerList } from "../common/util";
 import { COOKIE_HEADER, PORT_SVR_GAME } from "../common/define";
-import { ErrorCode } from "../packet/commonPacket";
+import { ErrorCode } from "../packet/commonpacket";
 import { getCookie, updateSession } from "../common/session";
 
 const app = express();

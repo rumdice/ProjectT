@@ -1,4 +1,4 @@
-import { ErrorCode } from "./commonPacket";
+import { ErrorCode } from "./commonpacket";
 
 export interface chatLog {
     userUid: string;
