@@ -180,7 +180,8 @@ chat server
 https://github.com/rumdice/ProjectC/tree/main/CSharp/ChatTester
 
 
-개선 할 부분
-초안이라고는 해도 대충 틀만 잡고 넘어간 부분 디테일 업
-
-내일 할 것
+개선 사항 및 해야 할 것
+게임, 채팅 서버 빌드 배포 스트립트 작성
+테스터 유니티 클라 붙여보기
+서버 머신에 jenkins 셋팅
+대충 틀만 잡고 넘어간 부분 디테일 업 및 기능과 내용 추가
