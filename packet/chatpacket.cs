@@ -81,7 +81,7 @@ namespace ChatPacketStruct
     }
     public class ResponseBody
     {
-         // TODO: commonPacket.cs에 정의 되어 있음. 
+         // TODO: common.cs에 정의 되어 있음. 
          // 툴로 c# to ts 전환시 해당 부분의 import 가 되지는 않아서 생성된 ts파일에서 import를 걸어줘야 함. 
          // gRPC를 쓰면 해결 될 듯..
          public ErrorCode error = ErrorCode.Undefinded;            

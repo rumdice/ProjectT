@@ -1,5 +1,5 @@
 import redis from "redis";
-import { ErrorCode } from "../packet/commonpacket";
+import { ErrorCode } from "../packet/common";
 import { MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define";
 import { panic, randomInt } from "./util";
 
@@ -90,4 +90,30 @@ export function getCookie(header?: string): any {
     }
 
     return [undefined, undefined];
+}
+
+
+export default {
+    init() {
+        return new Promise(function (resolve: (value: void) => void, reject) {
+            const client = redis.createClient();
+
+            client.on("error", function (err) {
+                client.end(false);
+                reject(err);
+            }).on("ready", async function () {
+                // Disable RDB save
+                await new Promise(resolve =>
+                    client.config("SET", "SAVE", "", (err, reply) => {
+                        if (err) reject(err);
+                        else resolve(reply);
+                    })
+                );
+
+                Object.defineProperty(global, 'redisClient', { value: client });
+                console.log('session is initialized.');
+                resolve();
+            });
+        });
+    }
 }
