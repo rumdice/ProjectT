@@ -5,8 +5,8 @@ import * as gp from "../../packet/gamepacket";
 import * as queryUser from "../query/user";
 import * as queryUtil from "../query/util";
 
+// 유저관련 기본 컨텐츠
 export async function login(cookie: Cookie, param: gp.RequestLogin): Promise<gp.ResponseLogin> {
-    
     // TODO: check user exist query
 
     // 하드코딩
