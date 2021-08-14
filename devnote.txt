@@ -209,7 +209,21 @@ tslint의 룰 적용 (일단 최소 내용만)
 룰을 적용하면 기존코드에 에러가 파팍 뜰 줄 알았더니 안 그럼...뭘 빼먹었나.
 기대한건 기존의 ts format 코드를 검사하여 에러를 띄우는 것, 기대한 대로 동작은 안함.
 
-> npm uninstall tslint 
-> npm uninstall -g tslint 
+삭제 후 재설치
+> npm i -g tslint (전역 설치만 진행)
+> tslint --init
+tslint.json 파일 생성
+rules 편집 (세미콜론, 콤마)
 
-tslint.json 파일 삭제
+vscode 확장 프로그램 tslint 설치
+vscode 재실행
+
+활성화된 파일중에 포맷이 안 맞으면 노랗게 뜸.
+왜 재설치 하니까 잘 되는지 모르겠지만 차이점은 확장 프로그램 설치후 .vscode폴더에 하위 파일이 생김
+- settings.json
+- extensions.json
+
+(tslint 관련 설정이 잡혀있음)
+
+pretter는 일단 현재 포맷에 익숙해 진 후에 자동으로 적용되게 다음에 적용하자.
+- 형태에 맞게 코드 자동으로 잡아줌
