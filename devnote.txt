@@ -227,3 +227,12 @@ vscode 재실행
 
 pretter는 일단 현재 포맷에 익숙해 진 후에 자동으로 적용되게 다음에 적용하자.
 - 형태에 맞게 코드 자동으로 잡아줌
+
+
+https://palantir.github.io/tslint/rules/semicolon/
+
+"semicolon": [true, "never"],
+
+세미콜론을 강제적으로 쓰지 않게끔 룰 적용
+세미콜론을 쓰든 안쓰든 에러는 나지 않고 C#의 스타일에 익숙해져 있지만 
+언어와 환경에 맞게 스타일에 익숙해지는 것도 중요하다.
