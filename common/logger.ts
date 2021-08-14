@@ -65,12 +65,12 @@ export function readGameErrorLog(date: string) {
 
 export function readGameInfoLog(date: string) {
     let path = gameServerLogDir + `/info/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(path)
 }
 
 export function readGameErrorDir() {
     let path = gameServerLogDir + '/error';
-    return loadLogDir(path);
+    return loadLogDir(path)
 }
 
 // 운영서버

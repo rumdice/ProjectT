@@ -16,7 +16,7 @@ const app = express();
 
 (async () => {
     // database Init
-    await Promise.all([database.init()]);
+    await Promise.all([database.init()])
 
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));

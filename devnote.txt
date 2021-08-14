@@ -200,3 +200,16 @@ ts 코드 스타일 일괄 적용
 > npm i -g tslint (전역 설치)
 > tslint --init
 tslint.json 파일 생성
+
+tslint의 룰 적용 (일단 최소 내용만)
+세미콜론 없에기
+콤마
+더 다양한 룰이 있으니 나중에 찾아보자
+
+룰을 적용하면 기존코드에 에러가 파팍 뜰 줄 알았더니 안 그럼...뭘 빼먹었나.
+기대한건 기존의 ts format 코드를 검사하여 에러를 띄우는 것, 기대한 대로 동작은 안함.
+
+> npm uninstall tslint 
+> npm uninstall -g tslint 
+
+tslint.json 파일 삭제
