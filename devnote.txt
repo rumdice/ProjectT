@@ -185,3 +185,18 @@ https://github.com/rumdice/ProjectC/tree/main/CSharp/ChatTester
 테스터 유니티 클라 붙여보기
 서버 머신에 jenkins 셋팅
 대충 틀만 잡고 넘어간 부분 디테일 업 및 기능과 내용 추가
+
+
+Date : 2021.08.14
+오늘 한 것
+
+타입스크립트 답게 쓰기
+조금 더 함수형 프로그래밍에 익숙한 개발자가 되자
+
+ts 코드 스타일 일괄 적용
+
+프로젝트의 터미널 창 열기
+> npm install tslint (이거로만 설치해서 그런가 명령어 인식을 못함)
+> npm i -g tslint (전역 설치)
+> tslint --init
+tslint.json 파일 생성
