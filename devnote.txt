@@ -188,7 +188,7 @@ https://github.com/rumdice/ProjectC/tree/main/CSharp/ChatTester
 
 
 Date : 2021.08.14
-오늘 한 것
+오늘 할 것
 
 타입스크립트 답게 쓰기
 조금 더 함수형 프로그래밍에 익숙한 개발자가 되자
@@ -239,8 +239,8 @@ https://palantir.github.io/tslint/rules/semicolon/
 
 
 
-Date : 2021.08.14
-오늘 한 것
+Date : 2021.08.15
+오늘 할 것
 타입스크립트 답게, 함수형 프로그래밍에 더 가깝게
 
 tslint의 본 코드 적용
@@ -260,3 +260,12 @@ js 및 ts는 객채를 const로 선언해도 맴버는 값 대입이 가능. 맴
 stackoverFlow 
 https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter
 중간에 리플 보면 Number()가 ParseInt보다 대충 6배 빠르다고 나옴
+
+
+Date : 2021.08.16
+오늘 할 것
+1.cronjob 붙이기
+2.랭킹서버 초안
+3.테이블 파서 알아보기 (csv, xlsx)
+4.ts 책 보고 개선 할 것 적용
+5.현재코드에서 어설픈 부분, TODO 및 개선 할 부분 정리
