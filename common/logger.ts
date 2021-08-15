@@ -1,13 +1,13 @@
-import { createLogger, format } from 'winston';
-import winstonDaily from 'winston-daily-rotate-file';
-import { loadLogFile, loadLogDir } from "./util";
+import { createLogger, format } from 'winston'
+import winstonDaily from 'winston-daily-rotate-file'
+import { loadLogFile, loadLogDir } from "./util"
 
-const { combine, timestamp, printf } = format;
+const { combine, timestamp, printf } = format
 
-const gameServerLogDir = '../logs/game';
-const adminServerLogDir = '../logs/admin';
-const chatServerLogDir = '../logs/chat';
-const days = 5; // 30일치 로그 - 거지라서 aws 요금 관련. 로그 파일 갯수 줄이기
+const gameServerLogDir = '../logs/game'
+const adminServerLogDir = '../logs/admin'
+const chatServerLogDir = '../logs/chat'
+const days = 5 // n일치 로그, 거지라서 ㅠㅠ aws 요금 관련 로그 파일 갯수 줄이기
 
 export enum logLevel {
     ERROR = 'error',
@@ -19,13 +19,14 @@ export enum logLevel {
 // TODO: 이런게 타입스트립트 답고, 함수형 프로그래밍 다운 것일까? logFormat이라는 함수를 값 처럼 취급
 const logFormat = printf(info => {
     if (process.env.NODE_ENV === "local") {
-        console.log(`${info.timestamp} - ${info.level}: ${info.message}`);
+        // tslint:disable-next-line: no-console
+        console.log(`${info.timestamp} - ${info.level}: ${info.message}`)
     }
 
-    return `${info.timestamp} - ${info.level}: ${info.message}`;
-});
+    return `${info.timestamp} - ${info.level}: ${info.message}`
+})
 
-// 게임서버
+// TODO: 똑같은 형태가 반복되므로 계층화 필요
 export const LoggerGame = createLogger({
     format: combine(
         timestamp({
@@ -56,24 +57,21 @@ export const LoggerGame = createLogger({
             zippedArchive: false,
         }),
     ],
-});
+})
 
 export function readGameErrorLog(date: string) {
-    let path = gameServerLogDir + `/error/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(gameServerLogDir + `/error/${date}.log`)
 }
 
 export function readGameInfoLog(date: string) {
-    let path = gameServerLogDir + `/info/${date}.log`;
-    return loadLogFile(path)
+    return loadLogFile(gameServerLogDir + `/info/${date}.log`)
 }
 
 export function readGameErrorDir() {
-    let path = gameServerLogDir + '/error';
-    return loadLogDir(path)
+    return loadLogDir(gameServerLogDir + '/error')
 }
 
-// 운영서버
+
 export const LoggerAdmin = createLogger({
     format: combine(
         timestamp({
@@ -104,24 +102,22 @@ export const LoggerAdmin = createLogger({
             zippedArchive: false,
         }),
     ],
-});
+})
 
 export function readAdminErrorLog(date: string) {
-    let path = adminServerLogDir + `/error/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(adminServerLogDir + `/error/${date}.log`)
 }
 
 export function readAdminInfoLog(date: string) {
-    let path = adminServerLogDir + `/info/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(adminServerLogDir + `/info/${date}.log`)
 }
 
 export function readAdminErrorDir() {
-    let path = adminServerLogDir + '/error';
-    return loadLogDir(path);
+    return loadLogDir(adminServerLogDir + '/error')
 }
 
-// 채팅서버
+
+
 export const LoggerChat = createLogger({
     format: combine(
         timestamp({
@@ -152,19 +148,16 @@ export const LoggerChat = createLogger({
             zippedArchive: false,
         }),
     ],
-});
+})
 
 export function readChatErrorLog(date: string) {
-    let path = chatServerLogDir + `/error/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(chatServerLogDir + `/error/${date}.log`)
 }
 
 export function readChatInfoLog(date: string) {
-    let path = chatServerLogDir + `/info/${date}.log`;
-    return loadLogFile(path);
+    return loadLogFile(chatServerLogDir + `/info/${date}.log`)
 }
 
 export function readChatErrorDir() {
-    let path = chatServerLogDir + '/error';
-    return loadLogDir(path);
+    return loadLogDir(chatServerLogDir + '/error')
 }

@@ -1,119 +1,116 @@
-import redis from "redis";
-import { ErrorCode } from "../packet/common";
-import { MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define";
-import { panic, randomInt } from "./util";
+import redis from "redis"
+import { ErrorCode } from "../packet/common"
+import { MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
+import { panic, randomInt } from "./util"
 
 // TODO: Redis 기반의 세션 생성 및 관리
 // 요청이 있을 때마다 redis 접근의 비용이 너무 비쌈. 좀 정형화되고 가벼운 방법을 찾기
 
-export type Cookie = any;
-type CookieInternal = [sessionToken: number, seq: number];
+export type Cookie = any
+type CookieInternal = [sessionToken: number, seq: number]
 
-declare const redisClient: redis.RedisClient;
+declare const redisClient: redis.RedisClient
 
 function sessionKeyOf(sessionToken: number): string {
-    return `session:${sessionToken}`;
+    return `session:${sessionToken}`
 }
 
 
 function doAsync<T>(operation: (cb: redis.Callback<T>) => void): Promise<T> {
     return new Promise((resolve, reject) =>
         operation((err, reply) => {
-            if (err) reject(err);
-            resolve(reply);
+            if (err) reject(err)
+            resolve(reply)
         })
-    );
+    )
 }
 
 export async function updateSession(cookie: Cookie): Promise<string | undefined> {
-    const [sessionToken,]: CookieInternal = cookie;
+    const [sessionToken,]: CookieInternal = cookie
 
     if (sessionToken == null)
-        return undefined;
+        return undefined
 
-    const sessionKey = sessionKeyOf(sessionToken);
+    const sessionKey = sessionKeyOf(sessionToken)
     const [newSeq] = await Promise.all([
         doAsync<number>(cb => redisClient.hincrby(sessionKey, "seq", 1, cb)),
-        doAsync<number>(cb => redisClient.expire(sessionKey, SESSION_TTL, cb))]);
+        doAsync<number>(cb => redisClient.expire(sessionKey, SESSION_TTL, cb))])
 
-    return `${sessionToken};${newSeq}`;
+    return `${sessionToken};${newSeq}`
 }
 
-export async function newSession(outCookie: Cookie, user_id: number, platform: string) {
+export async function newSession(outCookie: Cookie, userId: number, platform: string) {
     if (outCookie == null)
-        return;
+        return
 
-    async function acquireNewSessionToken(user_id: number) {
-        const userIdString = user_id.toString();
-        let tryCount = MAX_CNT_GENERATE_TOKEN;
+    async function acquireNewSessionToken(_userId: number) {
+        const userIdString = _userId.toString()
+        let tryCount = MAX_CNT_GENERATE_TOKEN
         while (tryCount--) {
-            const newToken = randomInt(1, 2147483647);
-            const result = await doAsync<number>(cb => redisClient.hsetnx(sessionKeyOf(newToken), 'id', userIdString, cb));
+            const newToken = randomInt(1, 2147483647)
+            const result = await doAsync<number>(cb => redisClient.hsetnx(sessionKeyOf(newToken), 'id', userIdString, cb))
             if (result === 1)
-                return newToken;
+                return newToken
         }
     }
 
-    const userKey = `user:${user_id}`;
-    const oldSessionToken = Number.parseInt(<string>await doAsync<string | null>(cb =>
-        redisClient.get(userKey, cb)));
+    const userKey = `user:${userId}`
+    const oldSessionToken = Number(await doAsync<string | null>(cb => redisClient.get(userKey, cb)) as string)
 
     if (Number.isInteger(oldSessionToken)) {
-        await doAsync(cb => redisClient.del(sessionKeyOf(oldSessionToken), cb));
+        await doAsync(cb => redisClient.del(sessionKeyOf(oldSessionToken), cb))
     }
 
-    const sessionToken = await acquireNewSessionToken(user_id);
+    const sessionToken = await acquireNewSessionToken(userId)
     if (sessionToken === undefined)
-        throw panic(ErrorCode.InternalError, 'newToken');
+        throw panic(ErrorCode.InternalError, 'newToken')
 
-    await doAsync(cb => redisClient.set(userKey, sessionToken.toString(),
-        "EX", USER_TTL, cb));
+    await doAsync(cb => redisClient.set(userKey, sessionToken.toString(), "EX", USER_TTL, cb))
 
-    const sessionKey = sessionKeyOf(sessionToken);
-    await doAsync(cb => redisClient.hset(sessionKey,
-        'seq', '0', 'platform', platform, cb));
-    await doAsync(cb => redisClient.expire(sessionKey, SESSION_TTL, cb));
+    const sessionKey = sessionKeyOf(sessionToken)
+    await doAsync(cb => redisClient.hset(sessionKey, 'seq', '0', 'platform', platform, cb))
+    await doAsync(cb => redisClient.expire(sessionKey, SESSION_TTL, cb))
 
-    outCookie[0] = sessionToken;
-    outCookie[1] = 0;
+    outCookie[0] = sessionToken
+    outCookie[1] = 0
 }
 
 
 
 export function getCookie(header?: string): any {
     if (header !== undefined) {
-        const [tokenString, seqString] = header.split(';', 2);
-        const result = [Number.parseInt(tokenString), Number.parseInt(seqString)];
+        const [tokenString, seqString] = header.split(';', 2)
+        const result = [Number(tokenString), Number(seqString)]
 
         if (Number.isInteger(result[0]) && Number.isInteger(result[1]))
-            return result;
+            return result
     }
 
-    return [undefined, undefined];
+    return [undefined, undefined]
 }
 
 
 export default {
     init() {
-        return new Promise(function (resolve: (value: void) => void, reject) {
-            const client = redis.createClient();
+        return new Promise((resolve: (value: void) => void, reject) => {
+            const client = redis.createClient()
 
-            client.on("error", function (err) {
-                client.end(false);
-                reject(err);
-            }).on("ready", async function () {
-                // Disable RDB save
-                await new Promise(resolve =>
-                    client.config("SET", "SAVE", "", (err, reply) => {
-                        if (err) reject(err);
-                        else resolve(reply);
-                    })
-                );
+            client.on("error", (err) => {
+                client.end(false)
+                reject(err)
+            }).on("ready", async () => {
+                // TODO: no-shadowed-variable?? 의미?
+                // tslint:disable-next-line: no-shadowed-variable
+                await new Promise(resolve => client.config("SET", "SAVE", "", (err, reply) => {
+                    (err) ? reject(err) : resolve(reply)
+                }))
 
-                Object.defineProperty(global, 'redisClient', { value: client });
-                console.log('session is initialized.');
-                resolve();
-            });
-        });
+                Object.defineProperty(global, 'redisClient', { value: client })
+
+                // tslint:disable-next-line: no-console
+                console.log('session is initialized.')
+                resolve()
+            })
+        })
     }
 }
