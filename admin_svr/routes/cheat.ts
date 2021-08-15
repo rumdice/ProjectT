@@ -6,7 +6,7 @@ import { getUserId } from "../query/query"
 const viewCheat = 'cheat'   // 페이지를 보여줄 .pug 파일 이름
 const bodyCheat = {
     title: 'cheat',
-    user_uuid: "",          // cheat.pug 의 var 변수에 대입됨. 객체안의 변수는 camelcase체크 안함. 신기함. 
+    user_uuid: "",          // cheat.pug 의 var 변수에 대입됨. 객체안의 변수는 camelcase체크 안함. 신기함.
     user_id: "",
     cheat_res: ""
 }

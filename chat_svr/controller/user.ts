@@ -1,6 +1,6 @@
-import * as userQuery from "../query/user";
-import * as cp from "../../packet/chatpacket";
-import { successChat } from "../../common/util";
+import * as userQuery from "../query/user"
+import * as cp from "../../packet/chatpacket"
+import { successChat } from "../../common/util"
 
 
 export async function RequestLogin(client: any, param: cp.RequestBodyLogin): Promise<cp.ResponseLogin> {
@@ -9,7 +9,7 @@ export async function RequestLogin(client: any, param: cp.RequestBodyLogin): Pro
     // proc
 
     // loggig
-   
+
     // resp
-    return successChat();
+    return successChat()
 }
