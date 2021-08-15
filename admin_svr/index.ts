@@ -1,43 +1,41 @@
-import express from "express";
-import path from 'path';
+import express from "express"
+import path from 'path'
+import database from "../common/database"
 
-import database from "../common/database";
-
-import routes from './routes/home';
-import login from './routes/login';
-import users from './routes/user';
-import cheat from './routes/cheat';
-import test from './routes/test';
-import logs from './routes/log';
-import { PORT_SVR_ADMIN } from "../common/define";
-import { LoggerAdmin } from "../common/logger";
+import routes from './routes/home'
+import login from './routes/login'
+import users from './routes/user'
+import cheat from './routes/cheat'
+import test from './routes/test'
+import logs from './routes/log'
+import { PORT_SVR_ADMIN } from "../common/define"
+import { LoggerAdmin } from "../common/logger"
 
 const app = express();
 
 (async () => {
-    // database Init
     await Promise.all([database.init()])
 
     // view engine setup
-    app.set('views', path.join(__dirname, 'views'));
-    app.set('view engine', 'pug');
+    app.set('views', path.join(__dirname, 'views'))
+    app.set('view engine', 'pug')
 
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
-    app.use(express.static('public'));
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.urlencoded({ extended: false }))
+    app.use(express.json())
+    app.use(express.static('public'))
+    app.use(express.static(path.join(__dirname, 'public')))
 
-    // 모듈 경로
-    app.use('/', login);        // 로그인 (첫 페이지)
-    app.use('/home', routes);   // 홈 (대시보드 같은 거)
-    app.use('/user', users);    // 유저
-    app.use('/cheat', cheat);   // 치트
-    app.use('/logs', logs);     // 로그
-    app.use('/test', test);     // 테스트
+    // module path
+    app.use('/', login)
+    app.use('/home', routes)
+    app.use('/user', users)
+    app.use('/cheat', cheat)
+    app.use('/logs', logs)
+    app.use('/test', test)
 
     // set port
-    const port = process.env.PORT || PORT_SVR_ADMIN;
-    app.set('port', port);
+    const port = process.env.PORT || PORT_SVR_ADMIN
+    app.set('port', port)
 
     // start admin server
     app.listen(app.get('port'), () => {
@@ -46,9 +44,8 @@ const app = express();
         // fluentd 를 쓸까? 흠..
 
         // tslint:disable-next-line: no-console
-        console.log(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
+        console.log(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`)
 
-        // console.log는 production code에 적합하지 않으니 경고창이 뜸. 우와, 위에 처럼 주석 달면 노란줄 안뜸.
         // LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
-    });
-})();
+    })
+})()

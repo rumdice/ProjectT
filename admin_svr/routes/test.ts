@@ -1,21 +1,19 @@
 import express from 'express'
 
-let res_view = 'test';
-let res_body = {
+const viewTest = 'test'
+const bodyTest = {
     title: 'test',
     dbRow: 0
-};
+}
 
-const router = express.Router();
+const router = express.Router()
 router.get('/', async (req, res) => {
-    res.render(res_view, res_body);
-});
+    res.render(viewTest, bodyTest)
+})
 
 router.post('/search', async (req, res) => {
-    let user_id = req.body.userid;
+    bodyTest.dbRow = 1
+    res.render(viewTest, bodyTest)
+})
 
-    res_body.dbRow = 1;
-    res.render(res_view, res_body);
-});
-
-export default router;
+export default router

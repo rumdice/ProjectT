@@ -1,10 +1,10 @@
 import express from 'express'
-import { checkLogin } from '../controller/login';
-import { addUserGoods, getUserGames, getUserGoods, getUserId } from '../query/query';
-import { errorPage } from './error';
+import { checkLogin } from '../controller/login'
+import { addUserGoods, getUserGames, getUserGoods, getUserId } from '../query/query'
+import { errorPage } from './error'
 
-let res_view = 'user'; // .pug
-let res_body = {
+const viewUser = 'user'
+const bodyUser = {
     title: 'user',
     goods: {
         gold: 0,
@@ -18,79 +18,78 @@ let res_body = {
     },
     user_uuid: "",
     user_id: ""
-};
+}
 
-const router = express.Router();
+const router = express.Router()
 router.get('/', async (req, res) => {
     if (!checkLogin()) {
-        errorPage("Login Fail", res);
+        errorPage("Login Fail", res)
     }
 
-    res.render(res_view, res_body);
-});
+    res.render(viewUser, bodyUser)
+})
 
 router.post('/search', async (req, res) => {
-    let user_uuid = req.body.useruuid;
+    const userUuid = req.body.useruuid
 
-    let user = await getUserId(user_uuid, res);
-    let goods = await getUserGoods(user.id, res);
-    let games = await getUserGames(user.id, res);
+    const user = await getUserId(userUuid, res)
+    const goods = await getUserGoods(user.id, res)
+    const games = await getUserGames(user.id, res)
 
+    bodyUser.goods.gold = goods.gold
+    bodyUser.goods.diamond = goods.diamond
+    bodyUser.goods.diamond_google = goods.diamond_google
+    bodyUser.goods.diamond_apple = goods.diamond_apple
 
-    res_body.goods.gold = goods.gold;
-    res_body.goods.diamond = goods.diamond;
-    res_body.goods.diamond_google = goods.diamond_google;
-    res_body.goods.diamond_apple = goods.diamond_apple;
+    bodyUser.trophy.total_highest_trophy = games.total_highest_trophy
+    bodyUser.trophy.trophy_reward_step = games.trophy_reward_step
 
-    res_body.trophy.total_highest_trophy = games.total_highest_trophy;
-    res_body.trophy.trophy_reward_step = games.trophy_reward_step;
+    bodyUser.user_uuid = userUuid
+    bodyUser.user_id = user.id
 
-    res_body.user_uuid = user_uuid;
-    res_body.user_id = user.id;
-
-    res.render(res_view, res_body);
-});
+    res.render(viewUser, bodyUser)
+})
 
 router.post('/addgoods', async (req, res) => {
-    let gold = req.body.add_gold;
-    let diamond = req.body.add_diamond;
-    let diamond_google = req.body.add_diamond_google;
-    let diamond_apple = req.body.add_diamond_apple;
+    const userUuid = req.body.add_user_uuid
+    const userId = req.body.add_user_id
 
-    let user_id = req.body.add_user_id;
-    let user_uuid = req.body.add_user_uuid;
+    let gold = req.body.add_gold
+    let diamond = req.body.add_diamond
+    // let diamond_google = req.body.add_diamond_google
+    // let diamond_apple = req.body.add_diamond_apple
 
     // check params
     if (gold === undefined || diamond === undefined) {
-        errorPage('invaild param', res);
+        errorPage('invaild param', res)
     }
 
     if (gold === '') {
-        gold = 0;
+        gold = 0
     }
 
     if (diamond === '') {
-        diamond = 0;
+        diamond = 0
     }
 
-    await addUserGoods(user_id, gold, diamond, res);
+    await addUserGoods(userId, gold, diamond, res)
 
-    let goods = await getUserGoods(user_id, res);
-    let games = await getUserGames(user_id, res);
+    const goods = await getUserGoods(userId, res)
+    const games = await getUserGames(userId, res)
 
-    res_body.goods.gold = goods.gold;
-    res_body.goods.diamond = goods.diamond;
-    res_body.goods.diamond_google = goods.diamond_google;
-    res_body.goods.diamond_apple = goods.diamond_apple;
+    bodyUser.goods.gold = goods.gold
+    bodyUser.goods.diamond = goods.diamond
+    bodyUser.goods.diamond_google = goods.diamond_google
+    bodyUser.goods.diamond_apple = goods.diamond_apple
 
-    res_body.trophy.total_highest_trophy = games.total_highest_trophy;
-    res_body.trophy.trophy_reward_step = games.trophy_reward_step;
+    bodyUser.trophy.total_highest_trophy = games.total_highest_trophy
+    bodyUser.trophy.trophy_reward_step = games.trophy_reward_step
 
-    res_body.user_uuid = user_uuid;
-    res_body.user_id = user_id;
+    bodyUser.user_uuid = userUuid
+    bodyUser.user_id = userId
 
-    res.render(res_view, res_body);
-});
+    res.render(viewUser, bodyUser)
+})
 
 
-export default router;
+export default router

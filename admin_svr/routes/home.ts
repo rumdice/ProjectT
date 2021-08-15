@@ -1,13 +1,13 @@
 import express from 'express'
 
-let res_view = 'home';
-let res_body = {
+const viewHome = 'home'
+const bodyHome = {
     title: 'home'
-};
+}
 
-const router = express.Router();
+const router = express.Router()
 router.get('/', (req, res) => {
-    res.render(res_view, res_body);
-});
+    res.render(viewHome, bodyHome)
+})
 
-export default router;
+export default router

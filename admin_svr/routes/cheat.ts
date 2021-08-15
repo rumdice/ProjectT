@@ -1,40 +1,40 @@
-import express from "express";
-import { doCheat } from "../controller/cheat";
-import { checkLogin } from "../controller/login";
-import { getUserId } from "../query/query";
+import express from "express"
+import { doCheat } from "../controller/cheat"
+import { checkLogin } from "../controller/login"
+import { getUserId } from "../query/query"
 
-let res_view = 'cheat';
-let res_body = {
+const viewCheat = 'cheat'   // 페이지를 보여줄 .pug 파일 이름
+const bodyCheat = {
     title: 'cheat',
-    user_uuid: "",
+    user_uuid: "",          // cheat.pug 의 var 변수에 대입됨. 객체안의 변수는 camelcase체크 안함. 신기함. 
     user_id: "",
     cheat_res: ""
-};
+}
 
-const router = express.Router();
+const router = express.Router()
 router.get('/', async (req, res) => {
     if (!checkLogin()) {
-        res.render('error', { title: 'Error' });
+        res.render('error', { title: 'Error' })
     }
 
-    res.render(res_view, res_body);
-});
+    res.render(viewCheat, bodyCheat)
+})
 
 router.post('/search', async (req, res) => {
-    let user_uuid = req.body.useruuid;
-    let dbResult = await getUserId(user_uuid, res);
-    
-    res_body.user_uuid = user_uuid;
-    res_body.user_id = dbResult.user_row.id;
-    res.render(res_view, res_body);
-});
+    const userUuid = req.body.useruuid
+    const dbResult = await getUserId(userUuid, res)
+
+    bodyCheat.user_uuid = userUuid
+    bodyCheat.user_id = dbResult.user_row.id
+    res.render(viewCheat, bodyCheat)
+})
 
 router.post('/do', async (req, res) => {
-    let user_uuid = req.body.cheat_user_uuid;
-    let cheat_url = req.body.cheat_url;
+    const userUuid = req.body.cheat_user_uuid
+    const cheatUrl = req.body.cheat_url
 
-    res_body.cheat_res = (doCheat(cheat_url, user_uuid)) ? `${cheat_url} Done!` : "Error!";
-    res.render(res_view, res_body);
-});
+    bodyCheat.cheat_res = (doCheat(cheatUrl, userUuid)) ? `${cheatUrl} Done!` : "Error!"
+    res.render(viewCheat, bodyCheat)
+})
 
-export default router;
+export default router

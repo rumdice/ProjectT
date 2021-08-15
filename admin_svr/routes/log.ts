@@ -1,56 +1,54 @@
 import express from 'express'
-import { readGameErrorDir, readGameErrorLog } from '../../common/logger';
+import { readGameErrorDir, readGameErrorLog } from '../../common/logger'
 
-let res_view = 'log';
-let res_body = {
+const viewLog = 'log'
+const viewLogRes = 'logRes' // TODO: post 결과를 해당 페이지의 modal로 표현, 일단 별도 페이지에 표기.
+const bodyLog = {
     title: 'log',
     logNameList: [""],
     logDataList: [""],
     idx: 0
-};
+}
 
-let viewLogRes = 'logRes';
-
-const router = express.Router();
+const router = express.Router()
 router.get('/', (req, res) => {
-    let logDir = readGameErrorDir();
-    let logNames: string[] = [];
+    const logDir = readGameErrorDir()
+    const logNames: string[] = []
 
     logDir.forEach(e => {
-        let filetype = e.split(".");
-        if (filetype[1] === 'log') {
-            logNames.push(filetype[0]);
+        const fileType = e.split(".")
+        if (fileType[1] === 'log') {
+            logNames.push(fileType[0])
         }
-    });
+    })
 
-    res_body.logNameList = logNames;
-    res.render(res_view, res_body);
-});
+    bodyLog.logNameList = logNames
+    res.render(viewLog, bodyLog)
+})
 
 router.post('/detail', (req, res) => {
-    
-    let logDir = readGameErrorDir();
-    let logNames: string[] = [];
-    let logDatas: string[] = [];
-    
+    const logDir = readGameErrorDir()
+    const logNames: string[] = []
+    const logDatas: string[] = []
+
     logDir.forEach(e => {
-        let filetype = e.split(".");
-        if (filetype[1] === 'log') {
-            logNames.push(filetype[0]);
+        const fileType = e.split(".")
+        if (fileType[1] === 'log') {
+            logNames.push(fileType[0])
         }
-    });
-    
+    })
+
     logNames.forEach(e => {
-        let logData = readGameErrorLog(e).toString();
-        logData = logData.replace(/\r/g, "");
+        let logData = readGameErrorLog(e).toString()
+        logData = logData.replace(/\r/g, "")
 
-        logDatas.push(logData);
-    });
+        logDatas.push(logData)
+    })
 
-    res_body.idx = req.body.bidx;
-    res_body.logNameList = logNames;
-    res_body.logDataList = logDatas;
-    res.render(viewLogRes, res_body);  // post 결과를 해당 페이지의 modal로 표현하고 싶지만, 일단 별도 페이지에 render.
-});
+    bodyLog.idx = req.body.bidx
+    bodyLog.logNameList = logNames
+    bodyLog.logDataList = logDatas
+    res.render(viewLogRes, bodyLog)
+})
 
-export default router;
+export default router
