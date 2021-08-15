@@ -236,3 +236,27 @@ https://palantir.github.io/tslint/rules/semicolon/
 세미콜론을 강제적으로 쓰지 않게끔 룰 적용
 세미콜론을 쓰든 안쓰든 에러는 나지 않고 C#의 스타일에 익숙해져 있지만 
 언어와 환경에 맞게 스타일에 익숙해지는 것도 중요하다.
+
+
+
+Date : 2021.08.14
+오늘 한 것
+타입스크립트 답게, 함수형 프로그래밍에 더 가깝게
+
+tslint의 본 코드 적용
+- 세미콜론
+- 공백
+- 선언된 타입 사용시 <> 보다  as 사용 권장
+- 화살표 함수 사용 권장
+- lowerCamelCase 사용 권장
+- require 보다 import 사용 권장
+- let과 const를 값 대입 여부에 따라 정확한 사용 권장
+- console.log 사용 지양
+- ParseInt() 사용 지양
+
+테스트 코드
+js 및 ts는 객채를 const로 선언해도 맴버는 값 대입이 가능. 맴버는 값이 아닌 정의된 값의 타입으로 판별함. (test_any.ts)
+
+stackoverFlow 
+https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter
+중간에 리플 보면 Number()가 ParseInt보다 대충 6배 빠르다고 나옴
