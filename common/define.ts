@@ -5,6 +5,7 @@ export const MAX_USER_NICK_NAME = 12
 export const PORT_SVR_GAME = 10010
 export const PORT_SVR_ADMIN = 5000
 export const PORT_SVR_CHAT = 8080
+export const PORT_SVR_RANK = 9090
 
 export const CONFIG_PATH_DB_LOCAL = "./config/dbconfig_local.json" // local은 바로 디버그로 실행 하므로 경로가 다름 (pm2 x)
 export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"

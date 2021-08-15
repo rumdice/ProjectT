@@ -7,6 +7,7 @@ const { combine, timestamp, printf } = format
 const gameServerLogDir = '../logs/game'
 const adminServerLogDir = '../logs/admin'
 const chatServerLogDir = '../logs/chat'
+const rankServerLogDir = '../logs/rank'
 const days = 5 // n일치 로그, 거지라서 ㅠㅠ aws 요금 관련 로그 파일 갯수 줄이기
 
 export enum logLevel {
@@ -161,3 +162,37 @@ export function readChatInfoLog(date: string) {
 export function readChatErrorDir() {
     return loadLogDir(chatServerLogDir + '/error')
 }
+
+
+// TODO : 으윽...어떻게 좀 해야겠어!
+export const LoggerRank = createLogger({
+    format: combine(
+        timestamp({
+            format: 'YYYY-MM-DD HH:mm:ss',
+        }),
+        logFormat,
+    ),
+
+    transports: [
+        new winstonDaily({
+            level: logLevel.INFO,
+            handleExceptions: true,
+            json: false,
+            datePattern: 'YYYY-MM-DD',
+            dirname: rankServerLogDir + '/info',
+            filename: `%DATE%.log`,
+            maxFiles: days,
+            zippedArchive: false,
+        }),
+
+        new winstonDaily({
+            level: logLevel.ERROR,
+            json: false,
+            datePattern: 'YYYY-MM-DD',
+            dirname: rankServerLogDir + '/error',
+            filename: `%DATE%.log`,
+            maxFiles: days,
+            zippedArchive: false,
+        }),
+    ],
+})
