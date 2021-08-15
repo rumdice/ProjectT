@@ -1,4 +1,4 @@
-import express = require('express');
+import express from 'express'
 import { readGameErrorDir, readGameErrorLog } from '../../common/logger';
 
 let res_view = 'log';

@@ -1,4 +1,4 @@
-import express = require('express');
+import express from 'express'
 import { checkAdminInfo, setLogin } from '../controller/login';
 
 let res_view = 'login';

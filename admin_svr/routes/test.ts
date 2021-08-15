@@ -1,4 +1,4 @@
-import express = require('express');
+import express from 'express'
 
 let res_view = 'test';
 let res_body = {

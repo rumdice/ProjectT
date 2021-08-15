@@ -1,4 +1,4 @@
-import express = require('express');
+import express from 'express'
 import { checkLogin } from '../controller/login';
 import { addUserGoods, getUserGames, getUserGoods, getUserId } from '../query/query';
 import { errorPage } from './error';
