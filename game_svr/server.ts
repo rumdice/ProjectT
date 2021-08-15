@@ -10,7 +10,6 @@ const app = express()
 
 export const gameServer = async () => {
     await Promise.all([database.init(), session.init()])
-    // const cron = new CronTest(); // create and start cron job
 
     app.use(express.json())
 

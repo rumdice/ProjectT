@@ -7,12 +7,16 @@ import { getControllerList } from '../common/util'
 import { PING_TICK, PORT_SVR_RANK } from '../common/define'
 import { ErrorCode } from '../packet/common'
 import { LoggerRank } from '../common/logger'
+import { CronCalcRank, CronResetRank } from '../common/cronjob'
 
 const app = express()
 const packetHandlerList = {} as any
 
 export const rankServer = async () => {
     await Promise.all([database.init()])
+
+    const rankCal = new CronCalcRank()
+    const rankReset = new CronResetRank()
 
     app.use(express.json())
 
