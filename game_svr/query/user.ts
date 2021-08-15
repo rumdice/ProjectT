@@ -1,24 +1,24 @@
-import { dbError } from "../../common/util";
-import { db, DBRow } from "../../common/database";
-import { dbErrorMsg } from "../../common/define";
+import { dbError } from "../../common/util"
+import { db, DBRow } from "../../common/database"
+import { dbErrorMsg } from "../../common/define"
 
 
 export async function checkIsExistUser(param: any) {
-    let queryStr = "SELECT `id`, `userUid` FROM `user` WHERE user_uuid = ?";
-    let queryParam = [param.user_uuid];
+    const queryStr = "SELECT `id`, `userUid` FROM `user` WHERE user_uuid = ?"
+    const queryParam = [param.user_uuid]
 
-    const [[row]]: DBRow = await db.query(queryStr, queryParam);
+    const [[row]]: DBRow = await db.query(queryStr, queryParam)
     if (row === undefined) {
-        throw dbError(dbErrorMsg.undefined);
+        throw dbError(dbErrorMsg.undefined)
     }
 
-    return row;
+    return row
 }
 
 export async function selectUserData(param: any) {
-    
+    return
 }
 
 export async function updateUserData(param: any) {
-    
+    return
 }

@@ -15,33 +15,33 @@ if (cluster.isPrimary) {
 
     // worker dead
     cluster.on('exit', (code: number, signal: any) => {
-            if (signal) {
-                LoggerChat.info(`worker was killed by signal: ${signal}`)
-            }
-            else if (code !== 0) {
-                LoggerChat.info(`worker exited with error code: ${code}`)
+        if (signal) {
+            LoggerChat.info(`worker was killed by signal: ${signal}`)
+        }
+        else if (code !== 0) {
+            LoggerChat.info(`worker exited with error code: ${code}`)
 
-                if (code === 200) {
-                    LoggerChat.info(`worker restart`)
-                    cluster.fork()
-                }
+            if (code === 200) {
+                LoggerChat.info(`worker restart`)
+                cluster.fork()
             }
-            else {
-                LoggerChat.info(`worker success!`)
-            }
-        })
+        }
+        else {
+            LoggerChat.info(`worker success!`)
+        }
+    })
 
     cluster.on('online', (worker: any) => {
-            LoggerChat.info(`worker pid:${worker.process.pid} is online`)
-        })
+        LoggerChat.info(`worker pid:${worker.process.pid} is online`)
+    })
 
     cluster.on('message', (worker: any, msg: string) => {
-            LoggerChat.info(`worker pid:${worker.process.pid}: msg:${msg}`)
-        })
+        LoggerChat.info(`worker pid:${worker.process.pid}: msg:${msg}`)
+    })
 
     cluster.on('listening', (worker: any, addr: string) => {
-            LoggerChat.info(`worker pid:${worker.process.pid}: addr:${addr}`)
-        })
+        LoggerChat.info(`worker pid:${worker.process.pid}: addr:${addr}`)
+    })
 }
 else {
     // Server set, create, run

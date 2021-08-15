@@ -1,71 +1,69 @@
-import express, { Router } from "express";
-import database from "../common/database";
-import { getControllerList } from "../common/util";
-import { COOKIE_HEADER, PORT_SVR_GAME } from "../common/define";
-import { ErrorCode } from "../packet/common";
-import session, { getCookie, updateSession } from "../common/session";
+import express, { Router } from "express"
+import database from "../common/database"
+import { getControllerList } from "../common/util"
+import { COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
+import { ErrorCode } from "../packet/common"
+import session, { getCookie, updateSession } from "../common/session"
+import { LoggerGame } from "../common/logger"
 
-const app = express();
+const app = express()
 
 export const gameServer = async () => {
-    await Promise.all([database.init(), session.init()]);
+    await Promise.all([database.init(), session.init()])
+    // const cron = new CronTest(); // create and start cron job
 
-    //const cron = new CronTest(); // create and start cron job
+    app.use(express.json())
 
-    app.use(express.json());
-
-    let router = express.Router()
-    let controllerList = getControllerList('./game_svr/controller');
-    for (let controller of controllerList) {
-        console.log(`bind controller "${controller}"`);
-        bindController(router, require(`./controller/${controller}`));
+    const router = express.Router()
+    const controllerList = getControllerList('./game_svr/controller')
+    for (const controller of controllerList) {
+        LoggerGame.info(`bind controller "${controller}"`)
+        bindController(router, require(`./controller/${controller}`))
     }
 
-    app.use(process.env.ROUTE || '/', router);
+    app.use(process.env.ROUTE || '/', router)
 
-    const port = process.env.PORT || PORT_SVR_GAME;
-    app.set('port', port);
+    const port = process.env.PORT || PORT_SVR_GAME
+    app.set('port', port)
 
     app.listen(app.get('port'), () => {
         if (process.send) {
-            process.send('ready');
+            process.send('ready')
         }
-    });
-};
-
+    })
+}
 
 
 
 function bindController(router: Router, module: any) {
-    type ControllerBinder = (cookie: any, param: any) => Promise<any>;
+    type ControllerBinder = (cookie: any, param: any) => Promise<any>
 
     function process(cookie: any, param: any, callback: ControllerBinder, res: any) {
         callback(cookie, param)
             .then(async result => {
 
                 // cookie 정보로 session 셋팅
-                const newCookie = await updateSession(cookie);
+                const newCookie = await updateSession(cookie)
                 if (newCookie !== undefined) {
-                    res.set(COOKIE_HEADER, newCookie);
+                    res.set(COOKIE_HEADER, newCookie)
                 }
 
-                let ret = result;
+                let ret = result
                 if (result === undefined) {
-                    ret = { error: ErrorCode.Success };
+                    ret = { error: ErrorCode.Success }
                 }
 
                 if (typeof result === 'number') {
-                    ret = { error: result };
+                    ret = { error: result }
                 }
 
-                res.json(ret);
+                res.json(ret)
             })
             .catch(reason => {
-                let cb = callback;
-                let errName = reason.name || "InternalError";
-                let errCode = reason.result || ErrorCode.InternalError;
-                let errMsg = reason.message;
-                let errStack = reason.stack;
+                const errName = reason.name || "InternalError"
+                const errCode = reason.result || ErrorCode.InternalError
+                const errMsg = reason.message
+                const errStack = reason.stack
 
                 // let totalErrorMsg = `
                 // Packet: /${cb.name},
@@ -76,21 +74,21 @@ function bindController(router: Router, module: any) {
                 // Message: ${errMsg}\\end`;
                 // LoggerGame.error(totalErrorMsg);
 
-                let totalErrorMsgToClient = `Packet:/${cb.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg} \\end`;
+                const totalErrorMsgToClient = `Packet:/${callback.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg} \\end`
                 res.json({
                     error: errCode,
                     message: totalErrorMsgToClient
-                });
-            });
+                })
+            })
     }
 
-    for (let entry of Object.entries(module)) {
-        const path = `/${entry[0]}`;
-        const binder = <ControllerBinder>entry[1];
-        router.post(path, (req, res) => process(getCookie(req.header(COOKIE_HEADER)), req.body, binder, res));
+    for (const entry of Object.entries(module)) {
+        const path = `/${entry[0]}`
+        const binder = entry[1] as ControllerBinder
+        router.post(path, (req, res) => process(getCookie(req.header(COOKIE_HEADER)), req.body, binder, res))
     }
 
     if (typeof module === 'function') {
-        module();
+        module()
     }
 }
