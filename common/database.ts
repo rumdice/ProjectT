@@ -1,19 +1,20 @@
-import mysql, { FieldPacket, OkPacket, PoolConnection, ResultSetHeader, RowDataPacket } from "mysql2/promise";
+import * as mysql from "mysql2/promise";
+
 import { loadConfig } from "./util";
 import { CONFIG_PATH_DB_DEV, CONFIG_PATH_DB_LIVE, CONFIG_PATH_DB_LOCAL} from "./define";
 
 export declare const db: mysql.Pool;
 
-export type DBRow = [RowDataPacket[], FieldPacket[]];
-export type DBStatus = [OkPacket, FieldPacket[]];
-export type DBResultSet = [ResultSetHeader, FieldPacket[]];
+export type DBRow = [mysql.RowDataPacket[], mysql.FieldPacket[]];
+export type DBStatus = [mysql.OkPacket, mysql.FieldPacket[]];
+export type DBResultSet = [mysql.ResultSetHeader, mysql.FieldPacket[]];
 
 export type Queryable = mysql.Pool | mysql.Connection;
 
 export const sqlformat = mysql.format;
 export const CURRENT_TIMESTAMP = { toSqlString() { return 'CURRENT_TIMESTAMP()'; } };
 
-export async function doTransaction<T>(callback: (conn: PoolConnection) => Promise<T>) {
+export async function doTransaction<T>(callback: (conn: mysql.PoolConnection) => Promise<T>) {
     const conn = await db.getConnection();
     let result: T;
 
