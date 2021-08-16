@@ -265,7 +265,18 @@ https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter
 Date : 2021.08.16
 오늘 할 것
 1.cronjob 붙이기
+- 커맨드 실행
+> npm i cron
+> npm i @types/cron 
+
 2.랭킹서버 초안
+- 만약에 실시간 랭킹을 원할 수도 있으니 실시간 서버로 올리기[https (x), ws (o)]
+- 실시간 랭킹이 필요 없으면 굳이?
+- 생각해 보니까 그냥 랭킹은 redis를 이용해서 구하고 게임서버에 물리면 되지 않았을까 싶기도 함. 
+
 3.테이블 파서 알아보기 (csv, xlsx)
-4.ts 책 보고 개선 할 것 적용
-5.현재코드에서 어설픈 부분, TODO 및 개선 할 부분 정리
+
+4.개선할 사항 정리
+- typescript 답게 사용하기, 무분별하게 사용한 any를 타입을 정해서 쓰자.
+- 함수가 변수랑 취급이 같게끔 함수도 타입 취급.? 함수의 재사용성을 높이기.
+- TODO: 한 부분의 개선 작업
