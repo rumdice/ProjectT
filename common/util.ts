@@ -66,3 +66,12 @@ export function successChat<T>(extra?: T): { error: ErrorCode } & T {
     }
     return result as { error: ErrorCode } & T
 }
+
+// TODO: 같은 코드의 반복. 분류
+export function successRank<T>(extra?: T): { error: ErrorCode } & T {
+    const result = {}
+    if (extra != null) {
+        Object.assign(result, extra)
+    }
+    return result as { error: ErrorCode } & T
+}
