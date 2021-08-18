@@ -298,3 +298,5 @@ https://openbase.com/categories/js/best-nodejs-csv-parser-libraries
 > npm i @types/fast-csv
 
 
+vscode 의 디버그 콘솔 창과 실제 콘솔에서 node 실행창의 보이는 결과가 달라 보임?
+- 그럴리 없는데 원인 찾아보기
