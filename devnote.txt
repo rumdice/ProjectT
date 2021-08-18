@@ -280,3 +280,12 @@ Date : 2021.08.16
 - typescript 답게 사용하기, 무분별하게 사용한 any를 타입을 정해서 쓰자.
 - 함수가 변수랑 취급이 같게끔 함수도 타입 취급.? 함수의 재사용성을 높이기.
 - TODO: 한 부분의 개선 작업
+
+Date : 2021.08.18
+오늘 할 것
+1.xlsx 붙이기 
+> npm i node-xlsx
+> npm i @types/node-xlsx
+
+2.csv 붙이기
+
