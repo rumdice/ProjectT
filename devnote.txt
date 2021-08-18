@@ -284,8 +284,17 @@ Date : 2021.08.16
 Date : 2021.08.18
 오늘 할 것
 1.xlsx 붙이기 
+https://openbase.com/categories/js/best-nodejs-xlsx-parser-libraries
+- 인기 순서 기준 익숙해 보이는 것 고름
+
 > npm i node-xlsx
 > npm i @types/node-xlsx
 
 2.csv 붙이기
+https://openbase.com/categories/js/best-nodejs-csv-parser-libraries
+- 인기 좋은 순서 기준으로 고름
+
+> npm i fast-csv
+> npm i @types/fast-csv
+
 
