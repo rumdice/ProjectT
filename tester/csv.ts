@@ -1,19 +1,21 @@
 import * as csv from 'fast-csv'
 import fs from "fs"
 
-export const main = async () => {
-    console.log('start')
-    await mycsvread()
-    console.log('end'); // 이 부분이 먼저 나옴
+export const start = async () => {
+    await csvRead()
 }
 
 
-async function mycsvread() {
-    const asystre = await readAsync()
-    csv.parseStream(asystre)
+async function csvRead() {
+    console.log('start')
+
+    const fileData = await readAsync()
+    csv.parseStream(fileData)
         .on('error', error => console.error(error))
         .on('data', row => console.log(row))
         .on('end', (rowCount: number) => console.log(`Parsed ${rowCount} rows`))
+
+    console.log('end')
 }
 
 
