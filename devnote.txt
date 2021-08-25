@@ -300,3 +300,21 @@ https://openbase.com/categories/js/best-nodejs-csv-parser-libraries
 
 vscode 의 디버그 콘솔 창과 실제 콘솔에서 node 실행창의 보이는 결과가 달라 보임?
 - 그럴리 없는데 원인 찾아보기
+
+Date : 2021.08.25
+오늘 할 것
+작성된 코드 중 문제점
+
+각 작업을 비동기 처리 해야 함. (shell -> csv -> xlsx)
+- 각 작업 완료 후 다음 작업 진행
+
+비동기 처리가 되지 않고 동기 처리가 되는건지 console.log에만 그렇게 표현되는 건지?
+- 함수 내부에서 함수 호출로 해결은 했지만 별로 스마트한 방법은 아닌듯.
+
+
+비동기 처리 관련 패키지 처리 (serise, waterfall)
+> npm i async
+> npm i @types/async
+
+- 이 부분을 이용한 활용법?
+
