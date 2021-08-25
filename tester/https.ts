@@ -16,13 +16,10 @@ let param: any
 // param = {
 // }
 
-
 url = "/test"
 param = {
     userUid: "aabbccdd123",
 }
-
-
 
 // request and response
 const options = {
@@ -35,13 +32,11 @@ const options = {
     }
 }
 
-
 // local/dev : http/https
 req = (server === "local") ? httprequest(options, response => { printf(response) }) : httpsrequest(options, response => { printf(response) })
 req.write(JSON.stringify(param))
 req.end()
 
-// console log
 function printf(e: any) {
     console.log(server)
     console.log(url)
