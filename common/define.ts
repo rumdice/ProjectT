@@ -24,16 +24,16 @@ export const MAX_CNT_GENERATE_TOKEN = 32
 
 export const tablePathBaseCsv = `./table/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
 export const csvFiles = [
-    `LevelTable.csv`,
-    `SeasonTable.csv`,
-    `ForbiddenWordTable.csv`
+    `level.csv`,
+    `season.csv`,
+    `word.csv`
 ]
 
 export const tablePathBaseXlsx = `./table/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
 export const xlsxFiles = [
-    `LevelTable.xlsx`,
-    `SeasonTable.xlsx`,
-    `ForbiddenWordTable.xlsx`
+    `level.xlsx`,
+    `season.xlsx`,
+    `word.xlsx`
 ]
 
 
