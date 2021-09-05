@@ -7,7 +7,8 @@ import { getControllerList } from '../common/util'
 import { PING_TICK, PORT_SVR_RANK } from '../common/define'
 import { ErrorCode } from '../packet/common'
 import { LoggerRank } from '../common/logger'
-import { CronCalcRank, CronResetRank } from '../common/cronjob'
+import { Cron, cronResetRank } from '../common/cron'
+
 
 const app = express()
 const packetHandlerList = {} as any
@@ -15,12 +16,11 @@ const packetHandlerList = {} as any
 export const rankServer = async () => {
     await Promise.all([database.init()])
 
-    const rankCal = new CronCalcRank()
-    const rankReset = new CronResetRank()
+    const rankReset =  new Cron() // TODO: 서버별로 다른 크론을 돌리게 세분화
 
     app.use(express.json())
 
-    const controllerList = getControllerList('./rank_svr/controller') // TODO:
+    const controllerList = getControllerList('./rank_svr/controller') // TODO: 하드코딩 제거
     controllerList.forEach(e => {
         LoggerRank.info(`bind controller "${e}"`)
         bindController(require(`./controller/${e}`))

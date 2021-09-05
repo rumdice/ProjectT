@@ -40,6 +40,10 @@ export async function getSeasonRankList(param: any) {
     return makeSeasonRankList(rows)
 }
 
+export async function resetRank() {
+    return
+}
+
 
 function makeSeasonRankList(datas: any[]) {
     const rankList: RankSeasonData[] = []
