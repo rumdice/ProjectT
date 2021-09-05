@@ -1,0 +1,12 @@
+{
+  "intervalTime": 10000,
+  "git": {
+    "repository": "https://github.com/rumdice/UnityProject.git",
+    "branch": "main",
+    "HEAD": ""
+  },
+  "dist": {
+    "command": "grunt release",
+    "cwd": "./"
+  }
+}

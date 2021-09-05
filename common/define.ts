@@ -12,7 +12,7 @@ export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"
 export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json"
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일
 
-export const BASH_PATH_TABLE = `./script/table_copy.sh`
+export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
 
 export const PING_TICK = 5000
 
@@ -22,14 +22,14 @@ export const COOKIE_HEADER = 'x-rumdice'
 export const MAX_CNT_GENERATE_TOKEN = 32
 
 
-export const tablePathBaseCsv = `./tables/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
+export const tablePathBaseCsv = `./table/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
 export const csvFiles = [
     `LevelTable.csv`,
     `SeasonTable.csv`,
     `ForbiddenWordTable.csv`
 ]
 
-export const tablePathBaseXlsx = `./tables/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
+export const tablePathBaseXlsx = `./table/csv`                     // git pull 받은 csv 테이블 파일 기본 경로
 export const xlsxFiles = [
     `LevelTable.xlsx`,
     `SeasonTable.xlsx`,

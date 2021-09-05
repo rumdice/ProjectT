@@ -5,11 +5,14 @@ import { COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
 import { ErrorCode } from "../packet/common"
 import session, { getCookie, updateSession } from "../common/session"
 import { LoggerGame } from "../common/logger"
+import { Cron, initTable } from "../common/cron"
 
 const app = express()
 
 export const gameServer = async () => {
-    await Promise.all([database.init(), session.init()])
+    await Promise.all([database.init(), session.init(), initTable()])
+
+    const cronJob =  new Cron() // TODO: 서버별 세분화 작업
 
     app.use(express.json())
 
