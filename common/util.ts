@@ -5,6 +5,11 @@ export function loadConfig(path: string) {
     return JSON.parse(fs.readFileSync(path, 'utf8'))
 }
 
+export function writeConfig(path: string, config: any) {
+    const newData = JSON.stringify(config, null, 2)
+    return fs.writeFileSync(path, newData)
+}
+
 export function loadLogFile(path: string) {
     return fs.readFileSync(path, 'utf8')
 }

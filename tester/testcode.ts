@@ -64,13 +64,13 @@
 
 // const { eachSeries } = require('async')
 
-// eachSeries( 
-//   [1,2,3], 
+// eachSeries(
+//   [1,2,3],
 //   async (item: any) => {
 //     console.log( 'item:', item )
 //     console.log()
 //     Promise.resolve() // <-- instead of callback
-//   }, 
+//   },
 //   (  err: any) => {
 //     console.log('err:', err)
 //   }
@@ -80,6 +80,8 @@
 
 
 
+
+// 순차 작업 테스트
 const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
 
 const installOS = () => asyncTask("Install OS")

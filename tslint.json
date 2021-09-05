@@ -6,6 +6,7 @@
     "jsRules": {},
     "rules": {
         "semicolon": [true, "never"],
+        "no-console": [false, "log", "error"],
         "trailing-comma": false
     },
     "rulesDirectory": []
