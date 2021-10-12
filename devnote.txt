@@ -337,6 +337,10 @@ Date : 2021.10.13
 설정파일등 git 포함
 db 정보 보안 - 사용시 의미있는 값 넣어서 쓰기 dbconfig_local
 
+사용자 pc 설치 사항
+node 윈도우 설치
+redis 윈도우 설치
+
 디버그 스텝
 1.
 vscode 터미널 
