@@ -1,0 +1,8 @@
+{
+    "host": "awsusername-rds-0.aabbccdd.awsregion.rds.amazonaws.com",
+    "user": "root",
+    "password": "pppp",
+    "database": "db0",
+    "connectionLimit": 100,
+    "timezone": "+00:00"
+}
