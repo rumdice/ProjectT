@@ -10,9 +10,9 @@ import { Cron, initTable } from "../common/cron"
 const app = express()
 
 export const gameServer = async () => {
-    await Promise.all([database.init(), session.init(), initTable()])
+    await Promise.all([database.init(), session.init()])
 
-    const cronJob =  new Cron() // TODO: 서버별 세분화 작업
+    // const cronJob =  new Cron() // TODO: 서버별 세분화 작업
 
     app.use(express.json())
 
