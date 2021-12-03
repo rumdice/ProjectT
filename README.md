@@ -21,4 +21,7 @@ mysql, redis
 
 
 실행 서버
-http://admin.rumdice.net:5000/
+http://admin.rumdice.net:5000/ (운영서버)
+
+실행 클라이언트
+UnityProject/ChatTester 
