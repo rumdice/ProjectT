@@ -7,8 +7,25 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "current active",
-            "program": "${file}",
+            "name": "start game_svr",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "program": "${workspaceFolder}\\out\\game_svr\\index.js",
+            "internalConsoleOptions": "openOnSessionStart",
+            "outputCapture": "console",
+            "env": {
+                "NODE_ENV": "local",    // local 환경 디버깅:local, 개발서버: dev, 라이브: live
+                // "PORT": "5005",
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "start chat_svr",
+            "program": "${workspaceFolder}\\out\\chat_svr\\index.js",
+            "preLaunchTask": "tsc: build - tsconfig.json",
             "skipFiles": [
                 "<node_internals>/**"
             ],
