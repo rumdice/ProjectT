@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  redis:
+    image: redis:alpine
+    command: redis-server --port 6378
+    container_name: projectT_docker_redis
+    hostname: projectT_docker_redis
+    ports:
+      - 16378:6378
