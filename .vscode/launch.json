@@ -8,10 +8,10 @@
             "type": "node",
             "request": "launch",
             "name": "start game_svr",
+            "preLaunchTask": "Compile tsc game",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "preLaunchTask": "tsc: build - tsconfig.json",
             "program": "${workspaceFolder}\\out\\game_svr\\index.js",
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "console",
@@ -24,8 +24,8 @@
             "type": "node",
             "request": "launch",
             "name": "start chat_svr",
+            "preLaunchTask": "Compile tsc chat",
             "program": "${workspaceFolder}\\out\\chat_svr\\index.js",
-            "preLaunchTask": "tsc: build - tsconfig.json",
             "skipFiles": [
                 "<node_internals>/**"
             ],
