@@ -8,15 +8,13 @@
             "type": "node",
             "request": "launch",
             "name": "start game_svr",
-            "preLaunchTask": "Compile tsc game",
+            "preLaunchTask": "Compile tsc",
+            "program": "${workspaceFolder}\\out\\game_svr\\index.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\out\\game_svr\\index.js",
-            "internalConsoleOptions": "openOnSessionStart",
-            "outputCapture": "console",
             "env": {
-                "NODE_ENV": "local",    // local 환경 디버깅:local, 개발서버: dev, 라이브: live
+                "NODE_ENV": "local",
                 // "PORT": "5005",
             }
         },
@@ -24,13 +22,13 @@
             "type": "node",
             "request": "launch",
             "name": "start chat_svr",
-            "preLaunchTask": "Compile tsc chat",
+            "preLaunchTask": "Compile tsc",
             "program": "${workspaceFolder}\\out\\chat_svr\\index.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "env": {
-                "NODE_ENV": "local",    // local 환경 디버깅:local, 개발서버: dev, 라이브: live
+                "NODE_ENV": "local",
                 // "PORT": "5005",
             }
         },
