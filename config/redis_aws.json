@@ -1,0 +1,5 @@
+{
+    "host": "host example aws elastic cache ip",
+    "port": "6378",
+	"db" : 0,
+}

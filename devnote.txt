@@ -371,3 +371,21 @@ index.ts 파일을 켜놓고 F5
 - vue.js 적용
 
 
+2021.12.13
+추가 할 사항
+- 빌드 환경 개선
+- docker 환경 사용 (redis, mysql)
+- 코드정리
+
+
+차후 추가 내용?
+- grpc 적용
+
+- vue.js 적용
+
+- 세션 관련으로 express session을 사용?
+npm i connect-redis
+
+
+
+

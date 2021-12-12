@@ -1,7 +1,7 @@
 import redis from "redis"
 import { ErrorCode } from "../packet/common"
-import { MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
-import { panic, randomInt } from "./util"
+import { CONFIG_PATH_GIT, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
+import { loadConfig, panic, randomInt } from "./util"
 
 // TODO: Redis 기반의 세션 생성 및 관리
 // 요청이 있을 때마다 redis 접근의 비용이 너무 비쌈. 좀 정형화되고 가벼운 방법을 찾기
@@ -93,7 +93,15 @@ export function getCookie(header?: string): any {
 export default {
     init() {
         return new Promise((resolve: (value: void) => void, reject) => {
-            const client = redis.createClient()
+
+            // TODO: 실행 머신 환경에 따라 달라져야 함.
+            const config = loadConfig(CONFIG_REDIS_LOCAL)
+
+            const client = redis.createClient({
+                host: config.host,
+                port: config.port,
+                db: config.db,
+            })
 
             client.on("error", (err) => {
                 client.end(false)

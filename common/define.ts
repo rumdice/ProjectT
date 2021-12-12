@@ -12,6 +12,8 @@ export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"
 export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json"
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일
 
+export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"                 // local docker redis
+
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
 
 export const PING_TICK = 5000
