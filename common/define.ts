@@ -7,12 +7,14 @@ export const PORT_SVR_ADMIN = 5000
 export const PORT_SVR_CHAT = 8080
 export const PORT_SVR_RANK = 9090
 
-export const CONFIG_PATH_DB_LOCAL = "./config/dbconfig_local.json"      // local은 바로 디버그로 실행 하므로 경로가 다름 (pm2 x)
-export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"
-export const CONFIG_PATH_DB_LIVE = "../config/dbconfig_real.json"
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일
 
-export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"                 // local docker redis
+export const CONFIG_MYSQL_LOCAL = "./config/mysql_local.json"           // loca docker mysql
+export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"           // local docker redis
+
+// TODO: local에서 디버그로 실행하는지 실제 환경에서 pm2 기반으로 실행하는지에 따라 경로가 다르므로 확인
+export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"
+
 
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
 

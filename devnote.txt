@@ -373,19 +373,27 @@ index.ts 파일을 켜놓고 F5
 
 2021.12.13
 추가 할 사항
-- 빌드 환경 개선
-- docker 환경 사용 (redis, mysql)
+1. 빌드 환경 개선 (완료)
+- 빌드 환경 문제 수정
+- 테스터도 바로 실행 할 수 있는 환경 만들면 좋을 듯?
+
+2. docker 환경 사용하게 코드 수정 (완료)
+- redis 
+- mysql
+
+3. 리팩토링 (진행)
 - 코드정리
+- 구조 개선
 
 
 차후 추가 내용?
 - grpc 적용
-
 - vue.js 적용
-
-- 세션 관련으로 express session을 사용?
-npm i connect-redis
-
+- 세션 관련으로 express session을 사용해보기?
+  npm i connect-redis
+  
+- 패킷 테스터 개선
+  postman을 사용하거나 사용하기 편한 툴 제작?
 
 
 

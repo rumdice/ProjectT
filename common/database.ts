@@ -1,7 +1,7 @@
 import * as mysql from "mysql2/promise"
 
 import { loadConfig } from "./util"
-import { CONFIG_PATH_DB_DEV, CONFIG_PATH_DB_LIVE, CONFIG_PATH_DB_LOCAL } from "./define"
+import { CONFIG_PATH_DB_DEV, CONFIG_MYSQL_LOCAL } from "./define"
 
 export declare const db: mysql.Pool
 
@@ -40,16 +40,13 @@ export default {
         if (process.env.NODE_ENV === "dev") {
             path = CONFIG_PATH_DB_DEV
         }
-        else if (process.env.NODE_ENV === "live") {
-            path = CONFIG_PATH_DB_LIVE
-        }
-        else {
-            path = CONFIG_PATH_DB_LOCAL
+        if (process.env.NODE_ENV === "local") {
+            path = CONFIG_MYSQL_LOCAL
         }
 
         const connectionPool = mysql.createPool(loadConfig(path))
         Object.defineProperty(module.exports, 'db', { value: connectionPool })
 
-        // console.log(`database is initialized. env:${process.env.NODE_ENV}`)
+        console.log(`database is initialized. env:${process.env.NODE_ENV}`)
     }
 }
