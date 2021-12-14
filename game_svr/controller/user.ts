@@ -5,22 +5,19 @@ import * as gp from "../../packet/gamepacket"
 import * as queryUser from "../query/user"
 import * as queryUtil from "../query/util"
 
-// 유저관련 기본 컨텐츠
 export async function login(cookie: Cookie, param: gp.RequestLogin): Promise<gp.ResponseLogin> {
-    // TODO: check user exist query
+    // 1.request param check
 
-    // 하드코딩
-    // let userData = await queryUser.selectUserData(param);
-    const userData = {
-        userId: 1,
-        userUid: "aabbcc",
-        isNewUser: false,
-    }
-
-    // 하드코딩
+    // 2.server logic
+    // - mysql
+    // - redis
+    const userData = await queryUser.selectUserData(param)
     const platform = "android" // param.platform으로 패킷으로 받아야 함
     await newSession(cookie, userData.userId, platform)
 
+    // 3. Log
+
+    // 4. response
     return successGame()
 }
 

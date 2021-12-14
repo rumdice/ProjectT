@@ -76,16 +76,7 @@ function bindController(router: Router, module: any) {
                 const errMsg = reason.message
                 const errStack = reason.stack
 
-                // let totalErrorMsg = `
-                // Packet: /${cb.name},
-                // RecvParam: ${JSON.stringify(param)},
-                // ErrorName: ${errName},
-                // ResultCode: ${errCode},
-                // CallStack: ${errStack},
-                // Message: ${errMsg}\\end`;
-                // LoggerGame.error(totalErrorMsg);
-
-                const totalErrorMsgToClient = `Packet:/${callback.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg} \\end`
+                const totalErrorMsgToClient = `Packet:/${callback.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg}, CallStack:${errStack} \\end`
                 res.json({
                     error: errCode,
                     message: totalErrorMsgToClient

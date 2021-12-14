@@ -3,8 +3,6 @@ import { ErrorCode } from "../packet/common"
 import { CONFIG_PATH_GIT, CONFIG_REDIS_DEV, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
 import { loadConfig, panic, randomInt } from "./util"
 
-// TODO: Redis 기반의 세션 생성 및 관리
-// 요청이 있을 때마다 redis 접근의 비용이 너무 비쌈. 좀 정형화되고 가벼운 방법을 찾기
 
 export type Cookie = any
 type CookieInternal = [sessionToken: number, seq: number]
@@ -115,7 +113,6 @@ export default {
                 client.end(false)
                 reject(err)
             }).on("ready", async () => {
-                // TODO: no-shadowed-variable?? 의미?
                 // tslint:disable-next-line: no-shadowed-variable
                 await new Promise(resolve => client.config("SET", "SAVE", "", (err, reply) => {
                     (err) ? reject(err) : resolve(reply)

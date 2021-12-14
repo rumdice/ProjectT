@@ -10,10 +10,5 @@ export async function test(cookie: Cookie, param: any): Promise<gp.BaseResponse>
     const time2 = time.time.getTime()
     const now = new Date()
 
-    // aa = 1;
-    // var obj1 = {};
-    // Object.defineProperty(obj1, "x", { value: 42, writable: false });
-    // obj1.x = 9; // TypeError 발생
-
     return successGame()
 }

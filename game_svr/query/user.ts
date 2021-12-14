@@ -16,7 +16,14 @@ export async function checkIsExistUser(param: any) {
 }
 
 export async function selectUserData(param: any) {
-    return
+
+    // example query
+
+    return {
+        userId: 1,
+        userUid: "aabbcc",
+        isNewUser: false,
+    }
 }
 
 export async function updateUserData(param: any) {
