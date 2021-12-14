@@ -3,3 +3,5 @@ logs/
 /config/dbconfig_dev.json
 /config/dbconfig_live.json
 /script/docker_projectT/mariadb
+/config/redis_aws.json
+/config/mysql_aws.json

@@ -1,0 +1,22 @@
+{
+    "apps": [
+        {
+            "name": "rumdice-game",
+            "script": "../out/game_svr/index.js",
+            "watch": "true",
+            "wait_ready": true,
+            "env_local": {
+                "NODE_ENV": "local",
+                "PORT": 4000
+            },
+            "env_dev": {
+                "NODE_ENV": "dev",
+                "PORT": 4000
+            },
+            "env_live": {
+                "NODE_ENV": "live",
+                "PORT": 4000
+            }
+        }
+    ]
+}
