@@ -42,6 +42,8 @@ master : 보관용 브랜치 (live)
 
 
 # Service
+게임 서버 : https://game.rumdice.net/test (test 패킷 경로)
+
 운영 서버 :  http://admin.rumdice.net:5000/
 
 클라이언트 : https://github.com/rumdice/UnityProject/tree/main/ChatTester (유니티 클라이언트)
