@@ -1,7 +1,7 @@
 import express, { Router } from "express"
 import database from "../common/database"
 import { getControllerList } from "../common/util"
-import { COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
+import { CONTROL_PATH_DEV, CONTROL_PATH_LOCAL, COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
 import { ErrorCode } from "../packet/common"
 import session, { getCookie, updateSession } from "../common/session"
 import { LoggerGame } from "../common/logger"
@@ -17,7 +17,16 @@ export const gameServer = async () => {
     app.use(express.json())
 
     const router = express.Router()
-    const controllerList = getControllerList('./game_svr/controller')
+
+    let controllerPath = ""
+    if (process.env.NODE_ENV === "dev") {
+        controllerPath = CONTROL_PATH_DEV
+    }
+    if (process.env.NODE_ENV === "local") {
+        controllerPath = CONTROL_PATH_LOCAL
+    }
+    const controllerList = getControllerList(controllerPath)
+
     for (const controller of controllerList) {
         LoggerGame.info(`bind controller "${controller}"`)
         bindController(router, require(`./controller/${controller}`))

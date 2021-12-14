@@ -16,6 +16,10 @@ export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"           // local
 export const CONFIG_MYSQL_DEV = "../config/mysql_aws.json"
 export const CONFIG_REDIS_DEV = "../config/redis_aws.json"
 
+// 머신에 따른 상대경로 이슈
+export const CONTROL_PATH_LOCAL = "./game_svr/controller"
+export const CONTROL_PATH_DEV = "../game_svr/controller"
+
 
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
 
