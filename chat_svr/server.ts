@@ -57,15 +57,15 @@ export const chatServer = async () => {
                     const result = { result: errCode }
                     resp = JSON.stringify(result)
 
-                    // LoggerChat.error(`
-                    // ServerPID: ${process.pid},
-                    // Packet: ${packet.header},
-                    // RecvParam: ${JSON.stringify(packet.body)},
-                    // ErrorName: ${errName},
-                    // ResultCode: ${errCode},
-                    // CallStack: ${errStack},
-                    // Message: ${errMsg}\\end
-                    // `);
+                    LoggerChat.error(`
+                    ServerPID: ${process.pid},
+                    Packet: ${packet.header},
+                    RecvParam: ${JSON.stringify(packet.body)},
+                    ErrorName: ${errName},
+                    ResultCode: ${errCode},
+                    CallStack: ${errStack},
+                    Message: ${errMsg}\\end
+                    `)
                 }
 
                 LoggerChat.info(`send resp msg:${resp}`)
