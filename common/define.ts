@@ -13,7 +13,7 @@ export const CONFIG_MYSQL_LOCAL = "./config/mysql_local.json"           // loca 
 export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"           // local docker redis
 
 // TODO: local에서 디버그로 실행하는지 실제 환경에서 pm2 기반으로 실행하는지에 따라 경로가 다르므로 확인
-export const CONFIG_PATH_DB_DEV = "../config/dbconfig_dev.json"
+export const CONFIG_MYSQL_DEV = "../config/mysql_aws.json"
 
 
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
