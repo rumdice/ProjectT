@@ -9,11 +9,12 @@ export const PORT_SVR_RANK = 9090
 
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일
 
-export const CONFIG_MYSQL_LOCAL = "./config/mysql_local.json"           // loca docker mysql
+export const CONFIG_MYSQL_LOCAL = "./config/mysql_local.json"           // local docker mysql
 export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"           // local docker redis
 
-// TODO: local에서 디버그로 실행하는지 실제 환경에서 pm2 기반으로 실행하는지에 따라 경로가 다르므로 확인
+// local에서 디버그로 실행하는지 실제 환경에서 pm2 기반으로 실행하는지에 따라 상대 경로가 다름
 export const CONFIG_MYSQL_DEV = "../config/mysql_aws.json"
+export const CONFIG_REDIS_DEV = "../config/redis_aws.json"
 
 
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
