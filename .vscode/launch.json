@@ -15,7 +15,21 @@
             ],
             "env": {
                 "NODE_ENV": "local",
-                // "PORT": "5005",
+                "PORT": "10010",
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "start admin_svr",
+            "preLaunchTask": "Compile tsc", // 운영툴은 리소스 갱신 스텝이 필요함.
+            "program": "${workspaceFolder}\\out\\admin_svr\\index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "NODE_ENV": "local",
+                "PORT": "5000",
             }
         },
         {
@@ -29,7 +43,7 @@
             ],
             "env": {
                 "NODE_ENV": "local",
-                // "PORT": "5005",
+                "PORT": "4000",
             }
         },
     ]

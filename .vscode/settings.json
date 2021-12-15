@@ -1,5 +1,7 @@
 {
     "tslint.suppressWhileTypeErrorsPresent": true,
     "tslint.configFile": "tslint.json",
-    "tslint.jsEnable": true
+    "tslint.jsEnable": true,
+    "csharpToTypeScript.convertDatesTo": "date",
+    "csharpToTypeScript.generateImports": true
 }
