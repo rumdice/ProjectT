@@ -34,7 +34,7 @@ namespace GamePacket
         public string userUid;
         public string userName;
     }
-    public class ResponseTest : BaseResponse
+    public class ResponseLogin : BaseResponse
     {
     }
 

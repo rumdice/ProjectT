@@ -24,6 +24,6 @@ export interface RequestLogin extends BaseRequest {
     userName: string;
 }
 
-export interface ResponseTest extends BaseResponse {
+export interface ResponseLogin extends BaseResponse {
 
 }
