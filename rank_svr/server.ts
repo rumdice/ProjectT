@@ -5,9 +5,9 @@ import express from 'express'
 import database from '../common/database'
 import { getControllerList } from '../common/util'
 import { PING_TICK, PORT_SVR_RANK } from '../common/define'
-import { ErrorCode } from '../packet/common'
 import { LoggerRank } from '../common/logger'
 import { Cron, cronResetRank } from '../common/cron'
+import { ErrorCode } from '../packet/errorCode'
 
 
 const app = express()

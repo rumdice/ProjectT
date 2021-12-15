@@ -1,5 +1,5 @@
 import redis from "redis"
-import { ErrorCode } from "../packet/common"
+import { ErrorCode } from "../packet/errorCode"
 import { CONFIG_PATH_GIT, CONFIG_REDIS_DEV, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
 import { loadConfig, panic, randomInt } from "./util"
 

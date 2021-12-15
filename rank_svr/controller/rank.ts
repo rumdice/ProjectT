@@ -1,7 +1,7 @@
 import * as queryRank from "../query/rank"
 import * as rp from "../../packet/rankpacket"
 import { successRank } from "../../common/util"
-import { ErrorCode } from "../../packet/common"
+import { ErrorCode } from "../../packet/errorCode"
 
 
 export async function RequestGetRankList(client: any, param: rp.RequestBodyGetRankList): Promise<rp.ResponseGetRankList> {

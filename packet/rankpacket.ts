@@ -1,5 +1,4 @@
-import { ErrorCode } from "./common";
-
+import { ErrorCode } from "./errorCode";
 
 export interface RequestBodyUpdateRankScore extends RequestBody {
     userUid: string;

@@ -1,6 +1,6 @@
-﻿using CommonPacketStruct;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
+using ErrorCode;
 
 namespace ChatPacketStruct
 {

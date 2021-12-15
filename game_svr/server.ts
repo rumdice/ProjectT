@@ -2,10 +2,10 @@ import express, { Router } from "express"
 import database from "../common/database"
 import { getControllerList } from "../common/util"
 import { CONTROL_PATH_DEV, CONTROL_PATH_LOCAL, COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
-import { ErrorCode } from "../packet/common"
 import session, { getCookie, updateSession } from "../common/session"
 import { LoggerGame } from "../common/logger"
 import { Cron, initTable } from "../common/cron"
+import { ErrorCode } from "../packet/errorCode"
 
 const app = express()
 
@@ -53,6 +53,7 @@ function bindController(router: Router, module: any) {
         callback(cookie, param)
             .then(async result => {
 
+                // success
                 // cookie 정보로 session 셋팅
                 const newCookie = await updateSession(cookie)
                 if (newCookie !== undefined) {
@@ -71,6 +72,9 @@ function bindController(router: Router, module: any) {
                 res.json(ret)
             })
             .catch(reason => {
+
+                // error
+                // 코드 어디에서 에러를 던져도 이곳에서 로깅 후 error response
                 const errName = reason.name || "InternalError"
                 const errCode = reason.result || ErrorCode.InternalError
                 const errMsg = reason.message
