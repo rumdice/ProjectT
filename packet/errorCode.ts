@@ -7,11 +7,3 @@ export enum ErrorCode {
     InternalError = 200,
     Undefinded = -1
 }
-
-export interface BaseRequest {
-
-}
-
-export interface BaseResponse {
-    error: ErrorCode;
-}
