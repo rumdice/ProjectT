@@ -60,5 +60,18 @@
                 "PORT": "9090",
             }
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "start game_client",
+            "preLaunchTask": "Compile tsc",
+            "program": "${workspaceFolder}\\out\\test_client\\game.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "NODE_ENV": "local",
+            }
+        },
     ]
 }

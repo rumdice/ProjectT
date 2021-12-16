@@ -1,6 +1,6 @@
 import redis from "redis"
 import { ErrorCode, Platform } from "../packet/errorCode"
-import { CONFIG_PATH_GIT, CONFIG_REDIS_DEV, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
+import { CONFIG_PATH_GIT, CONFIG_REDIS_AWS, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
 import { loadConfig, panic, randomInt } from "./util"
 
 
@@ -94,7 +94,7 @@ export default {
 
             let path = ""
             if (process.env.NODE_ENV === "dev") {
-                path = CONFIG_REDIS_DEV
+                path = CONFIG_REDIS_AWS
             }
             if (process.env.NODE_ENV === "local") {
                 path = CONFIG_REDIS_LOCAL

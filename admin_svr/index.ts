@@ -8,7 +8,6 @@ import users from './routes/user'
 import cheat from './routes/cheat'
 import test from './routes/test'
 import logs from './routes/log'
-import { PORT_SVR_ADMIN } from "../common/define"
 import { LoggerAdmin } from "../common/logger"
 
 const app = express();
@@ -34,7 +33,7 @@ const app = express();
     app.use('/test', test)
 
     // set port
-    const port = process.env.PORT || PORT_SVR_ADMIN
+    const port = process.env.PORT
     app.set('port', port)
 
     // start admin server

@@ -1,10 +1,11 @@
 import websocket from 'ws'
 import http from 'http'
 import express from 'express'
+import path from 'path'
 
 import database from '../common/database'
 import { getControllerList } from '../common/util'
-import { PING_TICK, PORT_SVR_RANK } from '../common/define'
+import { PING_TICK } from '../common/define'
 import { LoggerRank } from '../common/logger'
 import { Cron, cronResetRank } from '../common/cron'
 import { ErrorCode } from '../packet/errorCode'
@@ -15,18 +16,18 @@ const packetHandlerList = {} as any
 
 export const rankServer = async () => {
     await Promise.all([database.init()])
-
     // const rankReset =  new Cron() // TODO: 서버별로 다른 크론을 돌리게 세분화
 
     app.use(express.json())
 
-    const controllerList = getControllerList('./rank_svr/controller') // TODO: 하드코딩 제거
+    const controllerPath = path.join(__dirname, 'controller')
+    const controllerList = getControllerList(controllerPath)
     controllerList.forEach(e => {
         LoggerRank.info(`bind controller "${e}"`)
         bindController(require(`./controller/${e}`))
     })
 
-    const port = process.env.PORT || PORT_SVR_RANK
+    const port = process.env.PORT
     app.set('port', port)
 
     const server = http.createServer(app)

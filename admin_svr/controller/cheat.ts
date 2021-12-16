@@ -1,17 +1,11 @@
 import { request as httprequest } from 'http'
 import { request as httpsrequest } from 'https'
 import { response } from 'express'
-import { dev, local } from '../../common/define'
+import { dev, local, ServerInfo } from '../../common/define'
 
 export function doCheat(url: string, userUuid: string) {
     // pm2 env
-    let serverInfo: any
-    if (process.env.NODE_ENV === "dev") {
-        serverInfo = dev
-    }
-    else if (process.env.NODE_ENV === "local") {
-        serverInfo = local
-    }
+    const serverInfo: ServerInfo = (process.env.NODE_ENV === "local") ? local : dev
 
     const packetInfo = {
         header: url,                                        // protocol

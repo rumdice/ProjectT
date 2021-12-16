@@ -1,32 +1,24 @@
 import express, { Router } from "express"
 import database from "../common/database"
 import { getControllerList } from "../common/util"
-import { CONTROL_PATH_DEV, CONTROL_PATH_LOCAL, COOKIE_HEADER, PORT_SVR_GAME } from "../common/define"
+import { COOKIE_HEADER } from "../common/define"
 import session, { getCookie, updateSession } from "../common/session"
 import { LoggerGame } from "../common/logger"
 import { Cron, initTable } from "../common/cron"
 import { ErrorCode } from "../packet/errorCode"
+import path from 'path'
 
 const app = express()
 
 export const gameServer = async () => {
     await Promise.all([database.init(), session.init()])
-
     // const cronJob =  new Cron() // TODO: 서버별 세분화 작업
 
     app.use(express.json())
 
-    const router = express.Router()
-
-    let controllerPath = ""
-    if (process.env.NODE_ENV === "dev") {
-        controllerPath = CONTROL_PATH_DEV
-    }
-    if (process.env.NODE_ENV === "local") {
-        controllerPath = CONTROL_PATH_LOCAL
-    }
+    const controllerPath = path.join(__dirname, 'controller')
     const controllerList = getControllerList(controllerPath)
-
+    const router = express.Router()
     for (const controller of controllerList) {
         LoggerGame.info(`bind controller "${controller}"`)
         bindController(router, require(`./controller/${controller}`))
@@ -34,9 +26,13 @@ export const gameServer = async () => {
 
     app.use(process.env.ROUTE || '/', router)
 
-    const port = process.env.PORT || PORT_SVR_GAME
-    app.set('port', port)
+    const port = process.env.PORT
+    if (port === undefined) {
+        LoggerGame.error("pm2 or server setting error")
+        process.exit()
+    }
 
+    app.set('port', port)
     app.listen(app.get('port'), () => {
         if (process.send) {
             process.send('ready')

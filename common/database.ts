@@ -1,5 +1,5 @@
 import * as mysql from "mysql2/promise"
-import { CONFIG_MYSQL_DEV, CONFIG_MYSQL_LOCAL } from "./define"
+import { CONFIG_MYSQL_AWS, CONFIG_MYSQL_LOCAL } from "./define"
 import { loadConfig } from "./util"
 
 export declare const db: mysql.Pool
@@ -37,7 +37,7 @@ export default {
         // pm2 env
         let path = ""
         if (process.env.NODE_ENV === "dev") {
-            path = CONFIG_MYSQL_DEV
+            path = CONFIG_MYSQL_AWS
         }
         if (process.env.NODE_ENV === "local") {
             path = CONFIG_MYSQL_LOCAL

@@ -4,7 +4,6 @@ import { CLUSTER_MAX_COUNT } from '../common/define'
 import { LoggerRank } from '../common/logger'
 import { rankServer } from './server'
 
-// TODO: 이 부분도 공통된다. 모듈로 뺄 수 있으면 좋을듯?
 if (cluster.isPrimary) {
     // os.cpus().forEach(function () {
     //     cluster.fork();

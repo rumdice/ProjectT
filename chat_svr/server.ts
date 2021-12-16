@@ -1,11 +1,12 @@
 import websocket from 'ws'
 import http from 'http'
 import express from 'express'
+import path from 'path'
 
 import database from '../common/database'
 import { getControllerList } from '../common/util'
 import { LoggerChat } from '../common/logger'
-import { PING_TICK, PORT_SVR_CHAT } from '../common/define'
+import { PING_TICK } from '../common/define'
 import { ErrorCode } from '../packet/errorCode'
 
 const app = express()
@@ -16,13 +17,14 @@ export const chatServer = async () => {
 
     app.use(express.json())
 
-    const controllerList = getControllerList('./chat_svr/controller')
+    const controllerPath = path.join(__dirname, 'controller')
+    const controllerList = getControllerList(controllerPath)
     controllerList.forEach(e => {
         LoggerChat.info(`bind controller "${e}"`)
         bindController(require(`./controller/${e}`))
     })
 
-    const port = process.env.PORT || PORT_SVR_CHAT
+    const port = process.env.PORT
     app.set('port', port)
 
     const server = http.createServer(app)
