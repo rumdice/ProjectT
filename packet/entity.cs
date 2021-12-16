@@ -15,6 +15,15 @@ namespace Common
         public DateTime create;
     }
 
+
+    public class Item : Entity
+    {
+        public string name;
+        public int level;
+        public int grade;
+        public bool breakable;
+    }
+
 }
 
 

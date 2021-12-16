@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using ErrorCode;
-using Entity; // TODO: 패킷 변환시 확인. ts code로 변환시 import 구문이 클래스 이름으로 셋팅됨.
+using Common; // TODO: 패킷 변환시 확인. ts code로 변환시 import 구문이 클래스 이름으로 셋팅됨.
 
 namespace GamePacket
 {
@@ -9,6 +9,7 @@ namespace GamePacket
     {
         [JsonIgnore]
         public virtual string URL => "";
+        public string userUid;
     }
     public class BaseResponse
     {
@@ -20,8 +21,7 @@ namespace GamePacket
     // Test
     public class RequestTest : BaseRequest
     {
-        public override string URL => "/test";
-        public string userUid;
+        public override string URL => "/Test";
     }
     public class ResponseTest : BaseResponse
     {
@@ -31,8 +31,7 @@ namespace GamePacket
     // User
     public class RequestLogin : BaseRequest
     {
-        public override string URL => "/login";
-        public string userUid;
+        public override string URL => "/Login";
         public string userName;
     }
     public class ResponseLogin : BaseResponse
@@ -41,12 +40,31 @@ namespace GamePacket
 
     public class RequestUserStatus : BaseRequest
     {
-        public override string URL => "/userStatus";
-        public string userUid;
+        public override string URL => "/UserStatus";
     }
     public class ResponseUserStatus : BaseResponse
     {
         public UserStatus userStatus;
+    }
+
+
+    // Item
+    public class RequestItemInfo : BaseRequest
+    {
+        public override string URL => "/ItemInfo";
+    }
+    public class ResponseItemInfo : BaseResponse
+    {
+        public Item[] items = new Item[0];
+    }
+
+    public class RequestItemUpgrade : BaseRequest
+    {
+        public override string URL => "/ItemUpgrade";
+    }
+    public class ResponseItemUpgrade : BaseResponse
+    {
+
     }
 
 }

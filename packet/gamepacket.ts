@@ -1,8 +1,8 @@
-import { UserStatus } from "./entity";
+import { Item, UserStatus } from "./entity";
 import { ErrorCode } from "./errorCode";
 
 export interface BaseRequest {
-
+    userUid: string;
 }
 
 export interface BaseResponse {
@@ -12,7 +12,6 @@ export interface BaseResponse {
 
 export interface RequestTest extends BaseRequest {
     uRL: string;
-    userUid: string;
 }
 
 export interface ResponseTest extends BaseResponse {
@@ -21,7 +20,6 @@ export interface ResponseTest extends BaseResponse {
 
 export interface RequestLogin extends BaseRequest {
     uRL: string;
-    userUid: string;
     userName: string;
 }
 
@@ -31,9 +29,24 @@ export interface ResponseLogin extends BaseResponse {
 
 export interface RequestUserStatus extends BaseRequest {
     uRL: string;
-    userUid: string;
 }
 
 export interface ResponseUserStatus extends BaseResponse {
     userStatus: UserStatus;
+}
+
+export interface RequestItemInfo extends BaseRequest {
+    uRL: string;
+}
+
+export interface ResponseItemInfo extends BaseResponse {
+    items: Item[];
+}
+
+export interface RequestItemUpgrade extends BaseRequest {
+    uRL: string;
+}
+
+export interface ResponseItemUpgrade extends BaseResponse {
+
 }

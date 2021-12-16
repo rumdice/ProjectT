@@ -4,7 +4,7 @@ import { RequestLogin, RequestUserStatus, ResponseLogin, ResponseUserStatus } fr
 
 import * as queryUser from "../query/user"
 
-export async function login(cookie: Cookie, param: RequestLogin): Promise<ResponseLogin> {
+export async function Login(cookie: Cookie, param: RequestLogin): Promise<ResponseLogin> {
     // 1.request param check
 
     // 2.server logic (이 부분이 너무 복잡해지면 안된다.)
@@ -21,7 +21,7 @@ export async function login(cookie: Cookie, param: RequestLogin): Promise<Respon
     return successGame()
 }
 
-export async function userStatus(cookie: Cookie, param: RequestUserStatus): Promise<ResponseUserStatus> {
+export async function UserStatus(cookie: Cookie, param: RequestUserStatus): Promise<ResponseUserStatus> {
     // ...
     return successGame()
 }
