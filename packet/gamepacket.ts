@@ -1,5 +1,5 @@
 import { Item, UserStatus } from "./entity";
-import { ErrorCode } from "./errorCode";
+import { ErrorCode, Platform } from "./errorCode";
 
 export interface BaseRequest {
     userUid: string;
@@ -21,6 +21,7 @@ export interface ResponseTest extends BaseResponse {
 export interface RequestLogin extends BaseRequest {
     uRL: string;
     userName: string;
+    platform: Platform;
 }
 
 export interface ResponseLogin extends BaseResponse {

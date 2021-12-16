@@ -10,3 +10,10 @@ public enum ErrorCode : int
     InternalError = 200,
     Undefinded = -1,
 }
+
+public enum Platform : int
+{
+    Guest = 0,
+    Android = 1,
+    IOS = 2,
+}

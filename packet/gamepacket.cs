@@ -33,6 +33,7 @@ namespace GamePacket
     {
         public override string URL => "/Login";
         public string userName;
+        public Platform platform;
     }
     public class ResponseLogin : BaseResponse
     {

@@ -7,3 +7,9 @@ export enum ErrorCode {
     InternalError = 200,
     Undefinded = -1
 }
+
+export enum Platform {
+    Guest = 0,
+    Android = 1,
+    IOS = 2
+}

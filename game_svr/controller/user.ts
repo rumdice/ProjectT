@@ -11,9 +11,7 @@ export async function Login(cookie: Cookie, param: RequestLogin): Promise<Respon
     // - mysql
     // - redis
     const userData = await queryUser.selectUserData(param)
-
-    const platform = "android" // param.platform으로 패킷으로 받아야 함
-    await newSession(cookie, userData.userId, platform)
+    await newSession(cookie, userData.userId, param.platform)
 
     // 3. 로직 처리에 대한 결과 Log
 

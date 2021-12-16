@@ -1,5 +1,5 @@
 import redis from "redis"
-import { ErrorCode } from "../packet/errorCode"
+import { ErrorCode, Platform } from "../packet/errorCode"
 import { CONFIG_PATH_GIT, CONFIG_REDIS_DEV, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
 import { loadConfig, panic, randomInt } from "./util"
 
@@ -37,7 +37,7 @@ export async function updateSession(cookie: Cookie): Promise<string | undefined>
     return `${sessionToken};${newSeq}`
 }
 
-export async function newSession(outCookie: Cookie, userId: number, platform: string) {
+export async function newSession(outCookie: Cookie, userId: number, platform: Platform) {
     if (outCookie == null)
         return
 
@@ -66,7 +66,7 @@ export async function newSession(outCookie: Cookie, userId: number, platform: st
     await doAsync(cb => redisClient.set(userKey, sessionToken.toString(), "EX", USER_TTL, cb))
 
     const sessionKey = sessionKeyOf(sessionToken)
-    await doAsync(cb => redisClient.hset(sessionKey, 'seq', '0', 'platform', platform, cb))
+    await doAsync(cb => redisClient.hset(sessionKey, 'seq', '0', 'platform', Platform[platform], cb))
     await doAsync(cb => redisClient.expire(sessionKey, SESSION_TTL, cb))
 
     outCookie[0] = sessionToken
