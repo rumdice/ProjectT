@@ -16,7 +16,7 @@ const packetHandlerList = {} as any
 export const rankServer = async () => {
     await Promise.all([database.init()])
 
-    const rankReset =  new Cron() // TODO: 서버별로 다른 크론을 돌리게 세분화
+    // const rankReset =  new Cron() // TODO: 서버별로 다른 크론을 돌리게 세분화
 
     app.use(express.json())
 

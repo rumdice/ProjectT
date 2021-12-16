@@ -46,5 +46,19 @@
                 "PORT": "4000",
             }
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "start rank_svr",
+            "preLaunchTask": "Compile tsc",
+            "program": "${workspaceFolder}\\out\\rank_svr\\index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "NODE_ENV": "local",
+                "PORT": "9090",
+            }
+        },
     ]
 }
