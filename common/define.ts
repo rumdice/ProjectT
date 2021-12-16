@@ -4,7 +4,7 @@ export const MAX_USER_NICK_NAME = 12
 
 export const PORT_SVR_GAME = 10010
 export const PORT_SVR_ADMIN = 5000
-export const PORT_SVR_CHAT = 8080
+export const PORT_SVR_CHAT = 4000
 export const PORT_SVR_RANK = 9090
 
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일

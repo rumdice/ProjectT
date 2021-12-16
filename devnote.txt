@@ -451,3 +451,18 @@ index.ts 파일을 켜놓고 F5
 - 구현 프로젝트는 어디다 해도 괜찮음 (ProjectT or ProjectG)
 - 관련 클라도 구현 되면 좋긴 할듯 (UnityProject or UnrealProject)
 
+
+2021.12.16
+패킷 구조 개선
+- gamePacket
+- chatPacket
+- rankPacket
+
+패킷 구조 개선 적용
+- 서버
+- 패킷 테스터
+- 유니티 클라
+
+채팅 서버 실행 스크립트 작성 및 aws 머신에 올리기.
+
+실행 검토 및 테스트 해보기
