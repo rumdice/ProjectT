@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using ErrorCode;
-using Common; // TODO: 패킷 변환시 확인.
+using static ErrorCode;
+
 
 namespace ChatPacket
 {

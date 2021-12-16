@@ -1,9 +1,9 @@
 import * as userQuery from "../query/user"
-import * as cp from "../../packet/chatpacket"
 import { successChat } from "../../common/util"
+import { RequestChatLogin, ResponseChatLogin } from "../../packet/chatpacket"
 
 
-export async function RequestLogin(client: any, param: cp.RequestBodyLogin): Promise<cp.ResponseLogin> {
+export async function RequestLogin(client: any, param: RequestChatLogin): Promise<ResponseChatLogin> {
     // TODO: chat Server Logic
 
     // recv

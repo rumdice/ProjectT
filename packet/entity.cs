@@ -2,7 +2,7 @@ using System;
 
 namespace Common
 {
-    abstract class Entity
+    public abstract class Entity
     {
          
     }
