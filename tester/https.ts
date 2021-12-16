@@ -12,14 +12,16 @@ let url = ""
 let param: any
 
 // // 테스트 패킷 내용
-// url = "/login";
-// param = {
-// }
-
-url = "/test"
+url = "/login"
 param = {
-    userUid: "aabbccdd123",
+    userUid: "aabbccdd12343",
+    userName: "username1"
 }
+
+// url = "/Test"
+// param = {
+//
+// }
 
 // request and response
 const options = {
