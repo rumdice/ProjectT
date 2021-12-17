@@ -6,6 +6,7 @@ import * as queryUser from "../query/user"
 
 export async function Login(cookie: Cookie, param: RequestLogin): Promise<ResponseLogin> {
     // 1.request param check
+    console.log("Login")
 
     // 2.server logic (이 부분이 너무 복잡해지면 안된다.)
     // - mysql
@@ -21,5 +22,6 @@ export async function Login(cookie: Cookie, param: RequestLogin): Promise<Respon
 
 export async function UserStatus(cookie: Cookie, param: RequestUserStatus): Promise<ResponseUserStatus> {
     // ...
+    console.log("UserStatus")
     return successGame()
 }

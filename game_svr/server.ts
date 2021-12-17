@@ -85,9 +85,9 @@ function bindController(router: Router, module: any) {
     }
 
     for (const entry of Object.entries(module)) {
-        const path = `/${entry[0]}`
+        const modulePath = `/${entry[0]}`
         const binder = entry[1] as ControllerBinder
-        router.post(path, (req, res) => process(getCookie(req.header(COOKIE_HEADER)), req.body, binder, res))
+        router.post(modulePath, (req, res) => process(getCookie(req.header(COOKIE_HEADER)), req.body, binder, res))
     }
 
     if (typeof module === 'function') {

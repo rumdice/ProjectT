@@ -24,7 +24,7 @@ export function getControllerList(path: string) {
 
     conList.forEach(e => {
         const filetype = e.split(".")
-        if (filetype[1] === 'ts') {
+        if (filetype[1] === 'js' && filetype[2] !== 'map') {
             conNames.push(filetype[0])
         }
     })
