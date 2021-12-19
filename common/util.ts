@@ -56,13 +56,16 @@ export function dbError(sqlMsg: string) {
     return error
 }
 
-export function successGame<T>(extra?: T): { error: ErrorCode } & T {
+export function success<T>(extra?: T): { error: ErrorCode } & T {
     const result = { error: ErrorCode.Success }
     if (extra != null) {
         Object.assign(result, extra)
     }
     return result as { error: ErrorCode } & T
 }
+
+
+
 
 export function successChat<T>(extra?: T): { error: ErrorCode } & T {
     const result = {}

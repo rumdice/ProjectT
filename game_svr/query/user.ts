@@ -29,3 +29,21 @@ export async function selectUserData(param: any) {
 export async function updateUserData(param: any) {
     return
 }
+
+export async function getUserStatus(param: any) {
+    const queryStr = "SELECT `id`, `userUid` FROM `user` WHERE user_uuid = ?"
+    const queryParam = [param.user_uuid]
+
+    const [[row]]: DBRow = await db.query(queryStr, queryParam)
+    if (row === undefined) {
+        throw dbError(dbErrorMsg.undefined)
+    }
+
+    const now = new Date()
+    return {
+        name: "",
+        level: 1,
+        lastLogin: now,
+        create: now,
+    }
+}
