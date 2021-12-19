@@ -9,7 +9,7 @@ import login from './routes/login'
 import users from './routes/user'
 import cheat from './routes/cheat'
 import test from './routes/test'
-import logs from './routes/log'
+import log from './routes/log'
 import packet from './routes/packet'
 
 
@@ -32,7 +32,7 @@ const app = express();
     app.use('/home', routes)
     app.use('/user', users)
     app.use('/cheat', cheat)
-    app.use('/logs', logs)
+    app.use('/log', log)
     app.use('/test', test)
     app.use('/packet', packet)
 
@@ -42,6 +42,6 @@ const app = express();
 
     // start admin server
     app.listen(app.get('port'), () => {
-        LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
+        LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`)
     })
 })()

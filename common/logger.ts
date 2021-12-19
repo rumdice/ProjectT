@@ -69,6 +69,10 @@ export function readGameInfoLog(date: string) {
     return loadLogFile(gameServerLogDir + `/info/${date}.log`)
 }
 
+export function readGameInfoDir() {
+    return loadLogDir(gameServerLogDir + '/info')
+}
+
 export function readGameErrorDir() {
     return loadLogDir(gameServerLogDir + '/error')
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { readGameErrorDir, readGameErrorLog } from '../../common/logger'
+import { readGameErrorDir, readGameErrorLog, readGameInfoDir, readGameInfoLog } from '../../common/logger'
 
 const viewLog = 'log'
 const viewLogRes = 'logRes' // TODO: post 결과를 해당 페이지의 modal로 표현, 일단 별도 페이지에 표기.
@@ -12,7 +12,7 @@ const bodyLog = {
 
 const router = express.Router()
 router.get('/', (req, res) => {
-    const logDir = readGameErrorDir()
+    const logDir = readGameInfoDir()
     const logNames: string[] = []
 
     logDir.forEach(e => {
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/detail', (req, res) => {
-    const logDir = readGameErrorDir()
+    const logDir = readGameInfoDir()
     const logNames: string[] = []
     const logDatas: string[] = []
 
@@ -39,7 +39,7 @@ router.post('/detail', (req, res) => {
     })
 
     logNames.forEach(e => {
-        let logData = readGameErrorLog(e).toString()
+        let logData = readGameInfoLog(e).toString()
         logData = logData.replace(/\r/g, "")
 
         logDatas.push(logData)
