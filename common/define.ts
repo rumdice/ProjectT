@@ -3,13 +3,6 @@ export const CLUSTER_MAX_COUNT = 2
 export const CONFIG_PATH_GIT = "./config/gitConfig.json"                // 모니터링 할 git 정보 설정파일
 export const BASH_PATH_TABLE = `./script/pull_table_csv.sh`
 
-// local에서 디버그로 실행하는지 실제 환경에서 pm2 기반으로 실행하는지에 따라 상대 경로가 다름. 머신에 따른 상대경로 이슈
-export const CONFIG_MYSQL_LOCAL = "./config/mysql_local.json"           // local docker mysql
-export const CONFIG_MYSQL_AWS = "../config/mysql_aws.json"
-
-export const CONFIG_REDIS_LOCAL = "./config/redis_local.json"           // local docker redis
-export const CONFIG_REDIS_AWS = "../config/redis_aws.json"
-
 export const PING_TICK = 5000
 
 export const SESSION_TTL = 2 * 3600

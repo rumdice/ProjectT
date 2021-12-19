@@ -1,6 +1,7 @@
 import * as mysql from "mysql2/promise"
-import { CONFIG_MYSQL_AWS, CONFIG_MYSQL_LOCAL } from "./define"
 import { loadConfig } from "./util"
+import path from 'path'
+
 
 export declare const db: mysql.Pool
 
@@ -34,16 +35,15 @@ export async function doTransaction<T>(callback: (conn: mysql.PoolConnection) =>
 
 export default {
     async init() {
-        // pm2 env
-        let path = ""
+        let sqlConfigPath = ""
         if (process.env.NODE_ENV === "dev") {
-            path = CONFIG_MYSQL_AWS
+            sqlConfigPath = path.join(__dirname, '../', '../', '/config', '/mysql_aws.json')
         }
         if (process.env.NODE_ENV === "local") {
-            path = CONFIG_MYSQL_LOCAL
+            sqlConfigPath = path.join(__dirname, '../', '../', '/config', '/mysql_local.json')
         }
 
-        const connectionPool = mysql.createPool(loadConfig(path))
+        const connectionPool = mysql.createPool(loadConfig(sqlConfigPath))
         Object.defineProperty(module.exports, 'db', { value: connectionPool })
 
         console.log(`database is initialized. env:${process.env.NODE_ENV}`)

@@ -1,7 +1,8 @@
 import redis from "redis"
 import { ErrorCode, Platform } from "../packet/errorCode"
-import { CONFIG_PATH_GIT, CONFIG_REDIS_AWS, CONFIG_REDIS_LOCAL, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
+import { CONFIG_PATH_GIT, MAX_CNT_GENERATE_TOKEN, SESSION_TTL, USER_TTL } from "./define"
 import { loadConfig, panic, randomInt } from "./util"
+import path from 'path'
 
 
 export type Cookie = any
@@ -92,16 +93,15 @@ export default {
     init() {
         return new Promise((resolve: (value: void) => void, reject) => {
 
-            let path = ""
+            let redisConfigPath = ""
             if (process.env.NODE_ENV === "dev") {
-                path = CONFIG_REDIS_AWS
+                redisConfigPath = path.join(__dirname, '../', '../', '/config', '/redis_aws.json')
             }
             if (process.env.NODE_ENV === "local") {
-                path = CONFIG_REDIS_LOCAL
+                redisConfigPath = path.join(__dirname, '../', '../', '/config', '/redis_local.json')
             }
 
-
-            const config = loadConfig(path)
+            const config = loadConfig(redisConfigPath)
 
             const client = redis.createClient({
                 host: config.host,
