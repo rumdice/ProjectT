@@ -1,6 +1,8 @@
 import express from "express"
 import path from 'path'
+
 import database from "../common/database"
+import { LoggerAdmin } from "../common/logger"
 
 import routes from './routes/home'
 import login from './routes/login'
@@ -8,7 +10,8 @@ import users from './routes/user'
 import cheat from './routes/cheat'
 import test from './routes/test'
 import logs from './routes/log'
-import { LoggerAdmin } from "../common/logger"
+import packet from './routes/packet'
+
 
 const app = express();
 
@@ -31,6 +34,7 @@ const app = express();
     app.use('/cheat', cheat)
     app.use('/logs', logs)
     app.use('/test', test)
+    app.use('/packet', packet)
 
     // set port
     const port = process.env.PORT
@@ -38,13 +42,6 @@ const app = express();
 
     // start admin server
     app.listen(app.get('port'), () => {
-        // TODO: 개선방향 - 좀더 low 한 레벨에서 빌드 환경에 따른 로깅 방식 세분화 하기
-        // ex) 개발자 local에서는 콘솔만, dev 서버에는 파일로, live 환경에서는 파일 + mongodb 등 Nosql db로 남기기.
-        // fluentd 를 쓸까? 흠..
-
-        // tslint:disable-next-line: no-console
-        console.log(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`)
-
-        // LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
+        LoggerAdmin.info(`admin server start on port:${port}, process env:${process.env.NODE_ENV}`);
     })
 })()
