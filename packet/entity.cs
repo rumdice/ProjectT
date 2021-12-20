@@ -4,7 +4,7 @@ namespace Common
 {
     public abstract class Entity
     {
-         
+         public int id;
     }
 
     public class UserStatus : Entity

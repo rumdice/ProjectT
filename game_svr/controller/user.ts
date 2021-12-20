@@ -22,24 +22,5 @@ export async function Login(cookie: Cookie, param: RequestLogin): Promise<Respon
 }
 
 export async function UserStatus(cookie: Cookie, param: RequestUserStatus): Promise<ResponseUserStatus> {
-    console.log("UserStatus")
-
-    // 단순한 케이스.
-    // 로직이 복잡한 경우는?
-
-    const dbResult = await queryUser.getUserStatus(param)
-
-    // ...
-    // ...
-
-    const resp = {
-        error: ErrorCode.Success,
-        message: "",
-        userStatus : dbResult,
-    }
-
-    // TODO: 네이밍 수정. 성공, 실패
-    // success함수 개선.
-    // 아니면 에러처리.
-    return success(resp)
+   return success()
 }

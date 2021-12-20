@@ -1,5 +1,5 @@
 export interface Entity {
-
+    id: number;
 }
 
 export interface UserStatus extends Entity {

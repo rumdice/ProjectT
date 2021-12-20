@@ -75,6 +75,25 @@ export async function newSession(outCookie: Cookie, userId: number, platform: Pl
 }
 
 
+export async function acquireSession(cookie: Cookie): Promise<[user_id: number, platform: string]> {
+    const [sessionToken, seq]: CookieInternal = cookie
+
+    if (sessionToken == null)
+        throw panic(ErrorCode.InvalidSession, 'cookie')
+
+    const sessionKey = sessionKeyOf(sessionToken)
+    const [userIdString, seqString, platform] = await doAsync<string[]>(
+        cb => redisClient.hmget(sessionKey, "id", "seq", "platform", cb))
+
+    if (userIdString === null)
+        throw panic(ErrorCode.InvalidSession, 'session')
+
+    if (Number(seqString) !== seq)
+        throw panic(ErrorCode.InvalidSession)
+
+    return [Number(userIdString), platform]
+}
+
 
 export function getCookie(header?: string): any {
     if (header !== undefined) {

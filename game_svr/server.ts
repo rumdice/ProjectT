@@ -77,6 +77,9 @@ function bindController(router: Router, module: any) {
                 const errStack = reason.stack
 
                 const totalErrorMsgToClient = `Packet:/${callback.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg}, CallStack:${errStack} \\end`
+
+                LoggerGame.error(totalErrorMsgToClient)
+
                 res.json({
                     error: errCode,
                     message: totalErrorMsgToClient
