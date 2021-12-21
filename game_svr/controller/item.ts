@@ -10,8 +10,6 @@ export async function ItemInfo(cookie: Cookie, param: RequestItemInfo): Promise<
     console.log("ItemInfo")
     const [userId] = await acquireSession(cookie)
 
-    // 단순한 케이스.
-    // 로직이 복잡한 경우는?
     const item = new Item(userId)
     const itemInfo = await item.Info() // 복잡한 로직은 이 안에서.
 
