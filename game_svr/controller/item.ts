@@ -11,6 +11,8 @@ export async function ItemInfo(cookie: Cookie, param: RequestItemInfo): Promise<
     const item = new Item(userId)
     const itemInfo = await item.GetInfo() // 복잡한 로직은 이 안에서.
 
+
+    // TODO: 패킷 형식에 맞춰야 함.
     const resp = {
         error: ErrorCode.Success,
         message: "",

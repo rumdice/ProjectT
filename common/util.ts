@@ -39,7 +39,6 @@ export function randomInt(min: number, max: number): number {
 }
 
 
-// TODO: panic 과 success를 하나로 통합 및, 최상단 (server.ts에서 처리)
 export function panic(errorCode: ErrorCode, message?: string) {
     const error: any = new Error()
     error.code = errorCode
@@ -56,7 +55,18 @@ export function success<T>(extra?: T): { error: ErrorCode } & T {
     return result as { error: ErrorCode } & T
 }
 
+// export function response<T>(extra?: T): { error: ErrorCode, message: string } & T {
+//     const result = {
+//         error: ErrorCode.Success,
+//         message: (extra != null) ? extra : "",
+//     }
 
+//     // if (extra != null) {
+//     //     Object.assign(result.message, extra)
+//     // }
+
+//     return result as { error: ErrorCode, message: string } & T
+// }
 
 
 // TODO: 같은 코드의 반복. 분류

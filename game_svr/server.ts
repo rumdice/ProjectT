@@ -49,9 +49,7 @@ function bindController(router: Router, module: any) {
         callback(cookie, param)
             .then(async result => {
 
-                // 성공,컨텐츠 에러
-                // 1. 성공
-                // 2. 에러 개발자가 의도적으로 panic 에러를 던진 경우.
+                // 성공,
 
                 // cookie 정보로 session 셋팅
                 const newCookie = await updateSession(cookie)
@@ -68,16 +66,16 @@ function bindController(router: Router, module: any) {
                     ret = { error: result }
                 }
 
-                // TODO: 일관성 있게 작업
                 // res.json({
-                //     error: errCode,
-                //     message: totalErrorMsgToClient
+                //     error: ErrorCode.Success,
+                //     message: result.message,
                 // })
 
                 res.json(ret)
             })
             .catch(reason => {
                 // 시스템 에러
+                // 컨텐츠 에러
                 const resp = {
                     ReceivePacket: callback.name,
                     ReceiveParam: JSON.stringify(param),
@@ -88,7 +86,7 @@ function bindController(router: Router, module: any) {
                 LoggerGame.error(resp) // TODO: 이 정보를 클라로 보내는 패킷에 노출. product레벨에서는 조절.
 
                 res.json({
-                    error: ErrorCode.InternalError,
+                    error: (typeof reason.code !== 'number') ? ErrorCode.InternalError : reason.code,
                     message: resp
                 })
             })

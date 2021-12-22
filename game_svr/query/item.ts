@@ -1,5 +1,4 @@
 import { db, DBRow } from "../../common/database"
-import { panic } from "../../common/util"
 import { ErrorCode } from "../../packet/errorCode"
 
 // TODO: 쿼리만 수행하고 비정상 발동시 에러 처리 및 로깅은 따로 안함.
@@ -8,12 +7,12 @@ import { ErrorCode } from "../../packet/errorCode"
 export async function getUserAllItem(userId: number) {
     const query =
         "SELECT `itemTid`, `name`, `level`, `grade`, `breakable` " +
-        "FROM `UserItems` WHERE `userUid` = ? "
+        "FROM `UserItem` WHERE `userUid` = ? "
     const param = [userId]
 
     const [rows]: DBRow = await db.query(query, param)
     if (rows === undefined || rows.length === 0) {
-        throw panic(ErrorCode.DBError)
+        return undefined
     }
 
     return rows.map(v => ({

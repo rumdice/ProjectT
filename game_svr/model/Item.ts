@@ -4,6 +4,7 @@ import * as itemQuery from "../query/item"
 import { RequestLogin } from "../../chat_svr/controller/user"
 import { ErrorCode } from "../../packet/errorCode"
 import { panic } from "../../common/util"
+import { dbErrorMsg } from "../../common/define"
 
 // 아이템에 대한 요소 + 행동
 // 인터페이스는 서버 클라 공유 - 패킷
@@ -25,7 +26,7 @@ export class Item {
         // query 처리
         const dbResult = await itemQuery.getUserAllItem(this.userId)
         if (dbResult === undefined) {
-            throw panic(ErrorCode.DBError) // 에러를 던지면 최상단(server.ts)에 에러 로깅을 함.
+            throw panic(ErrorCode.DBError, dbErrorMsg.length0)
         }
 
         const result = dbResult
