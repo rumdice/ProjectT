@@ -38,20 +38,12 @@ export function randomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-export function panic(errorCode: ErrorCode, message?: string, packet?: string, param?: any) {
+
+// TODO: panic 과 success를 하나로 통합 및, 최상단 (server.ts에서 처리)
+export function panic(errorCode: ErrorCode, message?: string) {
     const error: any = new Error()
-    error.name = "PanicError"
-    error.result = errorCode
+    error.code = errorCode
     error.message = message
-
-    return error
-}
-
-export function dbError(sqlMsg: string) {
-    const error: any = new Error()
-    error.name = "DBError"
-    error.result = "DBError"
-    error.message = sqlMsg
 
     return error
 }
@@ -67,6 +59,7 @@ export function success<T>(extra?: T): { error: ErrorCode } & T {
 
 
 
+// TODO: 같은 코드의 반복. 분류
 export function successChat<T>(extra?: T): { error: ErrorCode } & T {
     const result = {}
     if (extra != null) {
@@ -75,7 +68,6 @@ export function successChat<T>(extra?: T): { error: ErrorCode } & T {
     return result as { error: ErrorCode } & T
 }
 
-// TODO: 같은 코드의 반복. 분류
 export function successRank<T>(extra?: T): { error: ErrorCode } & T {
     const result = {}
     if (extra != null) {

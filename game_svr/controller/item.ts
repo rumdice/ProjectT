@@ -4,18 +4,16 @@ import { ErrorCode } from "../../packet/errorCode"
 import { RequestItemInfo, RequestItemUpgrade, ResponseItemInfo, ResponseItemUpgrade } from "../../packet/gamepacket"
 import { Item } from "../model/Item"
 
-import * as queryItem from "../query/item"
-
 export async function ItemInfo(cookie: Cookie, param: RequestItemInfo): Promise<ResponseItemInfo> {
     console.log("ItemInfo")
     const [userId] = await acquireSession(cookie)
 
     const item = new Item(userId)
-    const itemInfo = await item.Info() // 복잡한 로직은 이 안에서.
+    const itemInfo = await item.GetInfo() // 복잡한 로직은 이 안에서.
 
     const resp = {
         error: ErrorCode.Success,
-        message: "resp ResponseItemInfo success",
+        message: "",
         items : itemInfo,
     }
 

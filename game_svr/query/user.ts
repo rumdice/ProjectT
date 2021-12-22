@@ -1,6 +1,7 @@
-import { dbError } from "../../common/util"
 import { db, DBRow } from "../../common/database"
 import { dbErrorMsg } from "../../common/define"
+import { panic } from "../../common/util"
+import { ErrorCode } from "../../packet/errorCode"
 
 
 export async function checkIsExistUser(param: any) {
@@ -9,7 +10,7 @@ export async function checkIsExistUser(param: any) {
 
     const [[row]]: DBRow = await db.query(queryStr, queryParam)
     if (row === undefined) {
-        throw dbError(dbErrorMsg.undefined)
+        throw panic(ErrorCode.DBError)
     }
 
     return row
@@ -36,7 +37,7 @@ export async function getUserStatus(param: any) {
 
     const [[row]]: DBRow = await db.query(queryStr, queryParam)
     if (row === undefined) {
-        throw dbError(dbErrorMsg.undefined)
+        throw panic(ErrorCode.DBError)
     }
 
     const now = new Date()

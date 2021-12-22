@@ -1,25 +1,23 @@
-import { dbError } from "../../common/util"
 import { db, DBRow } from "../../common/database"
-import { dbErrorMsg } from "../../common/define"
+import { panic } from "../../common/util"
+import { ErrorCode } from "../../packet/errorCode"
 
 // TODO: 쿼리만 수행하고 비정상 발동시 에러 처리 및 로깅은 따로 안함.
 // 에러 던지기를 여기저기서 하는게 좋은 구조인가?
 
 export async function getUserAllItem(userId: number) {
     const query =
-        "SELECT `id`, `name`, `level`, `grade`, `breakable` " +
-        "FROM `item` WHERE `user_id` = ? "
+        "SELECT `itemTid`, `name`, `level`, `grade`, `breakable` " +
+        "FROM `UserItems` WHERE `userUid` = ? "
     const param = [userId]
 
     const [rows]: DBRow = await db.query(query, param)
-    if (rows === undefined) {
-        // return []
-        // throw dbError("Undefinde!")
-        return undefined
+    if (rows === undefined || rows.length === 0) {
+        throw panic(ErrorCode.DBError)
     }
 
     return rows.map(v => ({
-        id: v.id as number,
+        id: v.itemTid as number,
         name: v.name as string,
         level: v.level as number,
         grade: v.grade as number,

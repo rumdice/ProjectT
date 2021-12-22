@@ -1,6 +1,7 @@
-import { dbError } from "../../common/util"
 import { db, DBRow, DBStatus } from "../../common/database"
 import { dbErrorMsg } from "../../common/define"
+import { panic } from "../../common/util"
+import { ErrorCode } from "../../packet/errorCode"
 import { RankSeasonData } from "../../packet/rankpacket"
 
 export async function resetSeasonRank() {
@@ -10,7 +11,7 @@ export async function resetSeasonRank() {
 
     const [status]: DBStatus = await db.query(queryStr, queryParam)
     if (status.affectedRows === 0) {
-        throw dbError(status.message)
+        throw panic(ErrorCode.DBError)
     }
 }
 
@@ -21,7 +22,7 @@ export async function calcSeasonRank() {
 
     const [status]: DBStatus = await db.query(queryStr, queryParam)
     if (status.affectedRows === 0) {
-        throw dbError(status.message)
+        throw panic(ErrorCode.DBError)
     }
 }
 
@@ -34,7 +35,7 @@ export async function getSeasonRankList(param: any) {
 
     const [rows]: DBRow = await db.query(queryStr, queryParam)
     if (rows.length === 0) {
-        throw dbError(dbErrorMsg.length0)
+        throw panic(ErrorCode.DBError)
     }
 
     return makeSeasonRankList(rows)
@@ -68,6 +69,6 @@ export async function updateSeasonRankScore(param: any) {
 
     const [status]: DBStatus = await db.query(queryStr, queryParam)
     if (status.affectedRows === 0) {
-        throw dbError(status.message)
+        throw panic(ErrorCode.DBError)
     }
 }

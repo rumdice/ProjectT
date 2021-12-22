@@ -42,10 +42,15 @@ req.end()
 
 
 function nextCall(cookie: any) {
-    url = "/UserStatus"
+    url = "/ItemInfo"
     param = {
         userUid: "aabbccdd12343",
     }
+
+    // url = "/Test"
+    // param = {
+    //     userUid: "aabbccdd12343",
+    // }
 
 
     let headerParam: any

@@ -1,6 +1,7 @@
-import { csvFiles, dbErrorMsg } from "../../common/define"
+import { csvFiles } from "../../common/define"
 import { LoggerGame } from "../../common/logger"
-import { dbError } from "../../common/util"
+import { panic } from "../../common/util"
+import { ErrorCode } from "../../packet/errorCode"
 import { AllTableList } from "./interface"
 
 // head
@@ -16,7 +17,7 @@ export async function searchStringFilterAll() {
 export async function searchStringFilter(word: string) {
     const table = AllTableList.find(e => e.name === csvFileName)
     if (table === undefined) {
-        throw dbError(`${dbErrorMsg.csvFileErr},${csvFileName}`)
+        throw panic(ErrorCode.DBError)
     }
 
     const headRow = table.data[0] // head row
@@ -35,7 +36,7 @@ export async function searchStringFilter(word: string) {
 export async function isExistWord(word: string) {
     const table = AllTableList.find(e => e.name === csvFileName)
     if (table === undefined) {
-        throw dbError(`${dbErrorMsg.csvFileErr},${csvFileName}`)
+        throw panic(ErrorCode.DBError)
     }
 
     let isExist = false

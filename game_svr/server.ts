@@ -49,7 +49,10 @@ function bindController(router: Router, module: any) {
         callback(cookie, param)
             .then(async result => {
 
-                // success
+                // 성공,컨텐츠 에러
+                // 1. 성공
+                // 2. 에러 개발자가 의도적으로 panic 에러를 던진 경우.
+
                 // cookie 정보로 session 셋팅
                 const newCookie = await updateSession(cookie)
                 if (newCookie !== undefined) {
@@ -65,24 +68,28 @@ function bindController(router: Router, module: any) {
                     ret = { error: result }
                 }
 
+                // TODO: 일관성 있게 작업
+                // res.json({
+                //     error: errCode,
+                //     message: totalErrorMsgToClient
+                // })
+
                 res.json(ret)
             })
             .catch(reason => {
+                // 시스템 에러
+                const resp = {
+                    ReceivePacket: callback.name,
+                    ReceiveParam: JSON.stringify(param),
+                    Comment: reason.message,
+                    CallStack: reason.stack
+                }
 
-                // error
-                // 코드 어디에서 에러를 던져도 이곳에서 로깅 후 error response
-                const errName = reason.name || "InternalError"
-                const errCode = reason.result || ErrorCode.InternalError
-                const errMsg = reason.message
-                const errStack = reason.stack
-
-                const totalErrorMsgToClient = `Packet:/${callback.name}, RecvParam:${JSON.stringify(param)}, ErrorName:${errName}, ResultCode:${errCode}, Message:${errMsg}, CallStack:${errStack} \\end`
-
-                LoggerGame.error(totalErrorMsgToClient)
+                LoggerGame.error(resp) // TODO: 이 정보를 클라로 보내는 패킷에 노출. product레벨에서는 조절.
 
                 res.json({
-                    error: errCode,
-                    message: totalErrorMsgToClient
+                    error: ErrorCode.InternalError,
+                    message: resp
                 })
             })
     }

@@ -1,6 +1,7 @@
 import { csvFiles, dbErrorMsg } from "../../common/define"
 import { LoggerGame } from "../../common/logger"
-import { dbError } from "../../common/util"
+import { panic } from "../../common/util"
+import { ErrorCode } from "../../packet/errorCode"
 import { AllTableList } from "./interface"
 
 // head
@@ -17,7 +18,7 @@ export async function searchLevelAll() {
 export async function searchLevel(level: number) {
     const table = AllTableList.find(e => e.name === csvFileName)
     if (table === undefined) {
-        throw dbError(`${dbErrorMsg.csvFileErr},${csvFileName}`)
+        throw panic(ErrorCode.DBError)
     }
 
     // 기본은 행, 열 기준으로 찾는다.
@@ -41,7 +42,7 @@ export async function searchLevel(level: number) {
 export async function getLevelData(id: number) {
     const table = AllTableList.find(e => e.name === csvFileName)
     if (table === undefined) {
-        throw dbError(`${dbErrorMsg.csvFileErr},${csvFileName}`)
+        throw panic(ErrorCode.DBError)
     }
 
     const point = table.data[id].pop()

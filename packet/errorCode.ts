@@ -1,10 +1,10 @@
 export enum ErrorCode {
     Success = 0,
-    InvalidSession = 1,
-    InvalidParam = 2,
-    MissingParam = 3,
-    DBError = 100,
-    InternalError = 200,
+    InternalError = 1,
+    DBError = 2,
+    InvalidSession = 3,
+    InvalidParam = 4,
+    MissingParam = 5,
     Undefinded = -1
 }
 
