@@ -30,7 +30,9 @@ script : 서버 설정 및 실행 bash 스크립트
 
 table : 게임 데이터 테이블 (.csv)
 
-tester : 패킷 테스터 코드, 테스트 코드 
+test_client : 패킷 테스트 클라이언트 코드
+
+test_code: 테스트 코드
 
 node_modules : npm 패키지 설치된 폴더
 
