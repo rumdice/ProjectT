@@ -8,22 +8,46 @@
 			"problemMatcher": [
 				"$tsc"
 			],
-			"group": "build",
+			"group": "build"
 		},
 		{
 			"label": "Refresh Admin Resource",
 			"type": "shell",
-			"command": "sh ../script/refresh_admin_resource.sh",
+			"command": "sh ../script/refresh_admin_resource.sh"
 		},
-
-		// {
-		// 	"label": "Compile tsc chat",
-		// 	"type": "typescript",
-		// 	"tsconfig": "tsconfig.json",
-		// 	"problemMatcher": [
-		// 		"$tsc"
-		// 	],
-		// 	"group": "build",
-		// }
+		{
+			"type": "docker-build",
+			"label": "docker-build",
+			"platform": "node",
+			"dockerBuild": {
+				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"context": "${workspaceFolder}",
+				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: release",
+			"dependsOn": [
+				"docker-build"
+			],
+			"platform": "node"
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: debug",
+			"dependsOn": [
+				"docker-build"
+			],
+			"dockerRun": {
+				"env": {
+					"DEBUG": "*",
+					"NODE_ENV": "development"
+				}
+			},
+			"node": {
+				"enableDebugging": true
+			}
+		}
 	]
 }

@@ -15,21 +15,21 @@
             ],
             "env": {
                 "NODE_ENV": "local",
-                "PORT": "10010",
+                "PORT": "10010"
             }
         },
         {
             "type": "node",
             "request": "launch",
             "name": "start admin_svr",
-            "preLaunchTask": "Compile tsc", // 운영툴은 리소스 갱신 스텝이 필요함.
+            "preLaunchTask": "Compile tsc",
             "program": "${workspaceFolder}\\out\\admin_svr\\index.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "env": {
                 "NODE_ENV": "local",
-                "PORT": "5000",
+                "PORT": "5000"
             }
         },
         {
@@ -43,7 +43,7 @@
             ],
             "env": {
                 "NODE_ENV": "local",
-                "PORT": "4000",
+                "PORT": "4000"
             }
         },
         {
@@ -57,7 +57,7 @@
             ],
             "env": {
                 "NODE_ENV": "local",
-                "PORT": "9090",
+                "PORT": "9090"
             }
         },
         {
@@ -70,8 +70,15 @@
                 "<node_internals>/**"
             ],
             "env": {
-                "NODE_ENV": "local",
+                "NODE_ENV": "local"
             }
         },
+        {
+            "name": "Docker Node.js Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "node"
+        }
     ]
 }
