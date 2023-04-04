@@ -2,7 +2,9 @@
 
 인프라 : AWS EC2(amazone linux), AWS RDS
 
-엔진 : Node.js, express.js
+빌드/배포 : Github CI/CD, AWS ECS, AWS ECR
+
+프레임워크 : Node.js, express.js
 
 언어 : Typescript, C#
 
